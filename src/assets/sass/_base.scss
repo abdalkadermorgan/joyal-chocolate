@@ -1,0 +1,12 @@
+h1 {
+    font-family: $headings-font-family;
+    font-weight: bold;
+}
+.main-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('../image/background.png');
+    background-position: center;
+    background-repeat: repeat;
+}

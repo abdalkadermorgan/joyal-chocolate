@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'futura-medium';
+    src: url("../font/futura-medium.ttf") format("truetype");
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,700;1,400&display=swap');
+
+
+
+// Theme Colors
+
+$primary: #3e6787;
+$secondary: #b48b8b;
+$success: #50cd89;
+$info: #7239ea;
+$warning: #ffc700;
+$danger: #f1416c;
+$light: #f5f8ff;
+$dark: #181c32;
+
+// Fonts
+
+$headings-font-family: 'futura-medium', sans-serif;
+$font-family-base: 'Poppins', sans-serif;
