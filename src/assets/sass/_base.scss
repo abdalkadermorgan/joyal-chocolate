@@ -1,4 +1,4 @@
-h1 {
+h1,h2 {
     font-family: $headings-font-family;
     font-weight: bold;
 }
@@ -6,7 +6,19 @@ h1 {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('../image/background.png');
+    background-image: url('../images/background.png');
     background-position: center;
     background-repeat: repeat;
+    z-index: -2; 
+}
+
+.padding-section {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }

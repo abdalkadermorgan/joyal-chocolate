@@ -1,0 +1,33 @@
+.choose-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  .title-content {
+    text-align: center;
+    position: absolute;
+    top: 40%;
+    width: 373px;
+    transform: translateY(-40%);
+  }
+  span {
+    font-size: 16rem;
+    z-index: 1;
+    opacity: 0.25;
+    font-family: $font-family-number;
+    color: #f9cb87;
+    line-height: 1;
+    
+  }
+  h2 {
+    color: $primary;
+    z-index: 2;
+    position: absolute;
+    z-index: 2;
+    font-size: 4rem;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

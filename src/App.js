@@ -1,14 +1,21 @@
+import { Row, Col, Container } from 'react-bootstrap';
 import './assets/css/app.css'
+import Sidebar from './components/Layout/Sidebar';
+import SelectTitle from './components/SelectTitle';
 
 function App() {
-  return ( 
-      <section className=''>
-        <div className='main-bg'></div>
-    <div className="container">
-      <h1>Choose the filling type</h1>
+  return (
+    <Container fluid>
+      <Row>
+        <Sidebar />
+        <Col lg={10}>
+          <Row className='h-100'>
+            <SelectTitle />
+          </Row>
+        </Col>
+      </Row>
 
-    </div>
-      </section>
+    </Container>
   );
 }
 
