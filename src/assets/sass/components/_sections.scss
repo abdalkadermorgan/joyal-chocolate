@@ -1,0 +1,111 @@
+.form-content {
+  max-width: 1300px;
+  margin: auto;
+}
+.box-type {
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid $secondary;
+  padding-left: 50px;
+  .select-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #d3dad6;
+    margin-bottom: 10px;
+    padding:20px 15px;
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border: none;
+    }
+    .content {
+      display: flex;
+      align-items: center;
+      .box-img {
+        width: 150px;
+        margin-right: 10px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      .num-price {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        h4 {
+          color: $primary;
+          font-family: $headings-font-family;
+          font-weight: bold;
+          font-size: 1.3rem;
+        }
+        p {
+          margin: 0;
+          color: $secondary;
+          font-weight: bold;
+          font-size: 1.3rem;
+        }
+      }
+    }
+    label {
+      width: 50px;
+      height: 50px;
+      max-width: 50px;
+      border-radius: 50% !important;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      position: relative;
+    }
+    .btn-check:focus + .btn-primary,
+    .btn-primary:focus {
+      background-color: #d6d1cb;
+      box-shadow: none;
+    }
+    .btn-check:checked + .btn-primary,
+    .btn-check:active + .btn-primary,
+    .btn-primary:active,
+    .btn-primary.active,
+    .show > .btn-primary.dropdown-toggle {
+      &::before {
+        content: "";
+        position: absolute;
+        color: #fff;
+        background: url("../images/check.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 40px;
+        height: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        fill: $secondary;
+      }
+      background-color: $primary;
+    }
+    .btn-check:checked + .btn-primary:focus,
+    .btn-check:active + .btn-primary:focus,
+    .btn-primary:active:focus,
+    .btn-primary.active:focus,
+    .show > .btn-primary.dropdown-toggle:focus {
+      background-color: $primary;
+      box-shadow: none;
+    }
+
+    .checkbox-select {
+      .form-check-input {
+        width: 3.5em;
+        height: 3.5em;
+        background-color: #d6d1cb;
+        border: none;
+        cursor: pointer;
+        box-shadow: none;
+      }
+      .form-check-input:checked[type="radio"] {
+        background-image: url("../images/check.svg");
+        background-color: $primary;
+      }
+    }
+  }
+}

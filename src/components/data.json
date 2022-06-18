@@ -1,0 +1,135 @@
+{
+  "box_type": [
+    {
+      "id": 1,
+      "title": "One Part Box",
+      "img_url": "./../../assets/images/onePart.svg",
+      "price": 32,
+      "checked": true
+    },
+    {
+      "id": 2,
+      "title": "Tow Part Box",
+      "img_url": "images.onePart",
+      "price": 44,
+      "checked": false
+    },
+    {
+      "id": 3,
+      "title": "Three Part Box",
+      "img_url": "images.onePart",
+      "price": 53,
+      "checked": false
+    }
+  ],
+  "chocolate_type": [
+    {
+      "id": 1,
+      "name": "Oval Chocolate",
+      "price": 13,
+      "peace": 12,
+      "img_url": "",
+      "filling_type": [
+        {
+            "id": 1,
+            "name": "Pistachio",
+            "price": 10,
+            "img_url":"",
+            "marge": [
+              {
+                "name": "none",
+                "price": 0
+              },
+              {
+                "name": "Chopped-Hazelnuts",
+                "price": 10
+              },
+              {
+                "name": "Biscuit",
+                "price": 20
+              }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Biscuit",
+            "price": 10,
+            "img_url":"",
+            "marge": [
+              {
+                "name": "none",
+                "price": 0
+              },
+              {
+                "name": "Chopped-Hazelnuts",
+                "price": 10
+              },
+              {
+                "name": "Biscuit",
+                "price": 20
+              }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Cheese",
+            "price": 15,
+            "img_url":"",
+            "marge": [
+              {
+                "name": "none",
+                "price": 0
+              },
+              {
+                "name": "Chopped-Hazelnuts",
+                "price": 10
+              },
+              {
+                "name": "Biscuit",
+                "price": 20
+              }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Feuilletine",
+            "price": 20,
+            "img_url":"",
+            "marge": [
+              {
+                "name": "none",
+                "price": 0
+              },
+              {
+                "name": "Chopped-Hazelnuts",
+                "price": 10
+              },
+              {
+                "name": "Biscuit",
+                "price": 20
+              }
+            ]
+        }
+      ]
+      
+    },
+    {
+      "id": 2,
+      "name": "Rectangular Chocolate",
+      "price": 18,
+      "peace": 12
+    },
+    {
+      "id": 3,
+      "name": "Square Chocolate",
+      "price": 16,
+      "peace": 12
+    },
+    {
+      "id": 4,
+      "name": "Circular Chocolate",
+      "price": 11,
+      "peace": 12
+    }
+  ]
+}

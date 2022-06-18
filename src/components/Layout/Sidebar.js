@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 
 const Sidebar = () => {
     return (
-        <Col lg={2} className="sidebar">
+        <div className="sidebar">
             <div className="main-sidebar">
                 <div className="content-sidebar">
                     <div className="logo">
@@ -34,7 +34,7 @@ const Sidebar = () => {
                     </div>
                 </div>
             </div>
-        </Col>
+        </div>
     )
 }
 

@@ -1,21 +1,23 @@
+import { Fragment } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import './assets/css/app.css'
 import Sidebar from './components/Layout/Sidebar';
-import SelectTitle from './components/SelectTitle';
+import SelectTitle from './components/Layout/SelectTitle';
+import TypeBox from './components/Steps/SelectBox';
 
 function App() {
   return (
-    <Container fluid>
-      <Row>
+    // <Container fluid>
+      <Fragment>
         <Sidebar />
-        <Col lg={10}>
-          <Row className='h-100'>
+        <div id='main-content'>
+          <Row className='h-100 align-items-center justify-content-center form-content'>
             <SelectTitle />
+            <TypeBox />
           </Row>
-        </Col>
-      </Row>
-
-    </Container>
+        </div>
+      </Fragment>
+    // </Container>
   );
 }
 
