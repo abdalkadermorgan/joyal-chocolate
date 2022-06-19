@@ -30,6 +30,9 @@
           height: 100%;
           object-fit: cover;
         }
+        &.chocalate-img {
+          width: 100px;
+        }
       }
       .num-price {
         display: flex;
@@ -45,7 +48,18 @@
           margin: 0;
           color: $secondary;
           font-weight: bold;
-          font-size: 1.3rem;
+          font-size: 1.4rem;
+        }
+        .price-paace {
+          display: flex;
+          align-items: center;
+          p{
+            margin-right: 5px;
+          }
+          span {
+            font-size: 1.1rem;
+            color: #A5A5A5;
+          }
         }
       }
     }
@@ -101,11 +115,32 @@
         border: none;
         cursor: pointer;
         box-shadow: none;
+        border-radius: 50%;
       }
-      .form-check-input:checked[type="radio"] {
+      .form-check-input:checked[type="radio"],.form-check-input:checked[type="checkbox"] {
         background-image: url("../images/check.svg");
         background-color: $primary;
       }
+    }
+  }
+}
+
+.select-filling {
+  display: flex;
+  flex-direction: column;
+  .chocolate-content {
+    display: flex;
+    align-items: center;
+    .chocolate-img {
+      width: 100px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    h4 {
+
     }
   }
 }
