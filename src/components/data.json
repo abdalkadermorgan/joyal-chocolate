@@ -37,7 +37,7 @@
             "img_url":"",
             "marge": [
               {
-                "name": "none",
+                "name": "Pnone",
                 "price": 0
               },
               {
@@ -57,7 +57,7 @@
             "img_url":"",
             "marge": [
               {
-                "name": "none",
+                "name": "Bnone",
                 "price": 0
               },
               {
@@ -77,7 +77,7 @@
             "img_url":"",
             "marge": [
               {
-                "name": "none",
+                "name": "Cnone",
                 "price": 0
               },
               {
@@ -97,7 +97,7 @@
             "img_url":"",
             "marge": [
               {
-                "name": "none",
+                "name": "Fnone",
                 "price": 0
               },
               {
