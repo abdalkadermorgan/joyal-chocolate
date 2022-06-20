@@ -50,8 +50,25 @@ ul {
 }
 
 .swiper-button-prev {
-  left: 0;
+  left: 0 !important;
+  transform: translateY(25%);
 }
 .swiper-button-next {
-  right: 0;
+  right: 0 !important;
+  transform: translateY(25%);
+}
+
+.border-section{
+    position: relative;
+    padding-left: 50px;
+  &::before {
+    content: '';
+    height: calc(100% + 150px);
+    width: 1.2px;
+    background: $border-color;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
 }

@@ -146,6 +146,7 @@
       border-top-right-radius: 30px;
       border-top-left-radius: 30px;
       transition: 0.2s;
+      padding: 8px 10px 8px 10px;
       &.active {
         background-color: $primary;
         .tab-header_img {
@@ -179,7 +180,7 @@
       }
     }
     .swiper-wrapper {
-      padding: 0 30px;
+      // padding: 0 30px;
     }
   }
   .chocolate-content {
@@ -242,5 +243,22 @@
         margin-right: 15px;
       }
     }
+  }
+}
+
+.card-message {
+  label {
+    font-family: $font-family-base;
+    font-size: .8rem;
+    color: $primary;
+    margin-left: 15px;
+  }
+  input, textarea,.form-control:focus {
+    background-color: #D6D1CB;
+    color: $primary;
+    opacity: .5;
+    box-shadow: none;
+    border: none;
+    border-radius: 30px;
   }
 }

@@ -34,12 +34,12 @@ const FillingType = () => {
           navigation={true} 
           modules={[Navigation]} 
           className="mySwiper"
-          spaceBetween={10}
-          slidesPerView={3}
+          spaceBetween={0}
+          slidesPerView={4}
         >
           {type.filling_type.map((filling, index) => (
-            <SwiperSlide>
-              <div className='filling-type' key={`filling-type-${index}`}>
+            <SwiperSlide key={`filling-type-${index}`}>
+              <div className='filling-type'>
                 <div className="tab-header">
                   <div className="tab-header_img">
                     <img src={images.biscuitFilling} alt="" />
