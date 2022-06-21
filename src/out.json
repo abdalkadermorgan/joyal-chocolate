@@ -1,0 +1,14 @@
+{
+    "box_type": [
+        {
+            "id": 1,
+            "name": "one",
+            "chocoType": [
+                {
+                    "id": 1,
+                    "name": "name"
+                }
+            ]
+        }
+    ]
+}

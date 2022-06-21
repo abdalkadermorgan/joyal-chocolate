@@ -20,7 +20,7 @@ const SelectBox = () => {
 
   return (
     <Col lg={6}>
-      <OrderNumber />
+      <FillingType />
     </Col>
   );
 };
