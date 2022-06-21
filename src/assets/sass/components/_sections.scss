@@ -244,6 +244,28 @@
       }
     }
   }
+
+  .marge-with {
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    padding: 20px;
+    border-radius: 30px;
+    span {
+      color: $white;
+      font-weight: bold;
+      margin-right: 30px;
+    }
+    .marge-content {
+      p{
+        color: $secondary;
+        font-size: .8rem;
+        margin: 0;
+        margin-right: 20px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .card-message,

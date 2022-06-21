@@ -1,4 +1,4 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
@@ -8,10 +8,15 @@ import { images } from "../../assets/images";
 import data from "../data.json";
 
 const FillingType = () => {
-
   const [select, setSelect] = useState();
-  const chocolate_type = data.chocolate_type;
+  const [isActive, setIsActive] = useState(false);
 
+  // const handleClick = (event) => {
+  //   // 👇️ toggle isActive state on click
+  //   setIsActive(event == !cur);
+  // };
+  const chocolate_type = data.chocolate_type;
+  console.log(select);
 
   return chocolate_type.map((type, i) => (
     <div className="select-filling" key={`filing-${i}`}>
@@ -19,11 +24,11 @@ const FillingType = () => {
         <div className="chocolate-img">
           <img src={images.ovalChocolate} alt="" />
         </div>
-        <h4>{type.name} {i}</h4>
+        <h4>
+          {type.name} {i}
+        </h4>
       </div>
-      <div
-        className='tab-main'
-      >
+      <div className="tab-main">
         <Swiper
           navigation={true}
           modules={[Navigation]}
@@ -36,10 +41,12 @@ const FillingType = () => {
               key={`filling-type-${index}${i}`}
               onClick={() => {
                 setSelect(filling);
+                // handleClick();
+                
                 console.log(filling);
               }}
             >
-              <div className='filling-type'>
+              <div onClick={() => {setIsActive(true);}} className={`filling-type   ${isActive ? "active" : ""}`}>
                 <div className="tab-header">
                   <div className="tab-header_img">
                     <img src={images.biscuitFilling} alt="" />
@@ -53,17 +60,20 @@ const FillingType = () => {
               </div>
             </SwiperSlide>
           ))}
-              <div className="marge-with">
-                <span>Marge With: </span>
-                {select?.marge?.map((marge, ii) => (
-                  <div className='' key={`marge-${ii}`}>
-                    <p>{marge.name}{ii}</p>
-                  </div>
-                ))}
-              </div>
         </Swiper>
       </div>
-    </div >
+      <div className="marge-with">
+        <span>Marge With: </span>
+        {select?.marge?.map((marge, ii) => (
+          <div className="marge-content" key={`marge-${ii}`}>
+            <p>
+              {marge.name}
+              {ii}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
   ));
 };
 
