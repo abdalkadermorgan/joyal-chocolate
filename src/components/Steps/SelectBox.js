@@ -3,9 +3,11 @@ import { Col } from "react-bootstrap";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import CardMessage from "../Form/CardMessage";
+import Information from "../Form/Information";
 import Box from "../Type/Box";
 import Chocolate from "../Type/Chocolate";
 import FillingType from "../Type/FillingType";
+import OrderNumber from "./OrderNumber";
 const SelectBox = () => {
   // const [value, setValue] = useState([1]);
 
@@ -18,7 +20,7 @@ const SelectBox = () => {
 
   return (
     <Col lg={6}>
-      <CardMessage />
+      <OrderNumber />
     </Col>
   );
 };

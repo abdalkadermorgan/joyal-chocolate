@@ -7,6 +7,9 @@
   margin-left: 200px;
   padding: 2rem;
 }
+.about-us-main {
+  background-color: $primary;
+}
 h1,
 h2 {
   font-family: $headings-font-family;
@@ -58,11 +61,11 @@ ul {
   transform: translateY(25%);
 }
 
-.border-section{
-    position: relative;
-    padding-left: 50px;
+.border-section {
+  position: relative;
+  padding-left: 50px;
   &::before {
-    content: '';
+    content: "";
     height: calc(100% + 150px);
     width: 1.2px;
     background: $border-color;
@@ -70,5 +73,19 @@ ul {
     top: 50%;
     left: 0;
     transform: translateY(-50%);
+  }
+  &-about {
+    position: relative;
+    padding-left: 50px;
+    &::before {
+      content: "";
+      height: calc(100% + 40px);
+      width: 1.2px;
+      background: $border-color;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
   }
 }
