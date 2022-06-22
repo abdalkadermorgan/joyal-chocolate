@@ -89,3 +89,24 @@ ul {
     }
   }
 }
+.slide-next,
+.slide-prev {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: $primary;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.slide-next {
+  right: 0px;
+}
+.slide-prev {
+  left: auto;
+}

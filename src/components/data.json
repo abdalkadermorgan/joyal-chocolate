@@ -109,6 +109,26 @@
                 "price": 20
               }
             ]
+        },
+        {
+            "id": 5,
+            "name": "Feuilletine",
+            "price": 20,
+            "img_url":"",
+            "marge": [
+              {
+                "name": "Fnone",
+                "price": 0
+              },
+              {
+                "name": "Chopped-Hazelnuts",
+                "price": 10
+              },
+              {
+                "name": "Biscuit",
+                "price": 20
+              }
+            ]
         }
       ]
       

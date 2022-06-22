@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 
 const SelectTitle = () => {
     return (
-        <Col lg={6}>
+        <Col lg={5}>
             <div className="choose-title">
                 <div className="title-content">
                     <span>01</span>

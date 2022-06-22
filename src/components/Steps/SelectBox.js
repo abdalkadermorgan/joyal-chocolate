@@ -19,7 +19,7 @@ const SelectBox = () => {
   // }
 
   return (
-    <Col lg={6}>
+    <Col lg={7}>
       <FillingType />
     </Col>
   );

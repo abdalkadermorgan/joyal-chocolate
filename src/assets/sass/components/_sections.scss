@@ -1,5 +1,5 @@
 .form-content {
-  max-width: 1300px;
+  max-width: 1400px;
   margin: auto;
 }
 .box-type {
@@ -141,12 +141,15 @@
     border: none;
     margin-bottom: 0 !important;
     display: flex;
+    padding-left: 40px;
+    padding-right: 40px;
     .filling-type {
       border: none;
       border-top-right-radius: 30px;
       border-top-left-radius: 30px;
       transition: 0.2s;
       padding: 8px 10px 8px 10px;
+      cursor: pointer;
       &.active {
         background-color: $primary;
         .tab-header_img {
@@ -179,9 +182,6 @@
         }
       }
     }
-    .swiper-wrapper {
-      // padding: 0 30px;
-    }
   }
   .chocolate-content {
     display: flex;
@@ -207,6 +207,7 @@
   .tab-header {
     display: flex;
     align-items: center;
+    justify-content: center;
     &_img {
       margin-right: 10px;
       img {
