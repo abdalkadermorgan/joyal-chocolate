@@ -1,17 +1,14 @@
 import { Col } from "react-bootstrap";
 
-
-const SelectTitle = () => {
-    return (
-        <Col lg={5}>
-            <div className="choose-title">
-                <div className="title-content">
-                    <span>01</span>
-                    <h2>Choose your suitable box</h2>
-                </div>
-            </div>
-        </Col>
-    )
-}
+const SelectTitle = (props) => {
+  return (
+    <div className="choose-title">
+      <div className="title-content">
+        <span>{props.number}</span>
+        <h2>{props.title}</h2>
+      </div>
+    </div>
+  );
+};
 
 export default SelectTitle;

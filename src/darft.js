@@ -70,5 +70,15 @@ const FillingType = () => {
     </div >
   ));
 };
+{/* <Fragment>
+        <Sidebar />
+        <div id="main-content">
+          <Row className="h-100 align-items-center justify-content-center form-content">
+            <SelectTitle />
+            <TypeBox />
+            <Steps />
+          </Row>
+        </div>
+      </Fragment> */}
 
 export default FillingType;
