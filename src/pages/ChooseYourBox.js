@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { Col } from "react-bootstrap";
 import SelectTitle from "../components/Layout/SelectTitle";
+import Steps from "../components/Layout/Steps";
 import Box from "../components/Type/Box";
 
 const ChooseYourBox = (props) => {
@@ -12,6 +13,7 @@ const ChooseYourBox = (props) => {
       <Col lg={7}>
         <Box />
       </Col>
+      <Steps next={'/choose-chocolate'} prev={'/'} />
     </Fragment>
   );
 };

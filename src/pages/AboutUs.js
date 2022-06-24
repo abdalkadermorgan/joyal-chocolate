@@ -1,5 +1,5 @@
 import { Col, Row } from "react-bootstrap";
-import { images } from "../../assets/images";
+import { images } from "../assets/images";
 import { UilPhoneAlt } from '@iconscout/react-unicons';
 import { UilEnvelopeAlt } from '@iconscout/react-unicons';
 import { UilMapMarker } from '@iconscout/react-unicons';
@@ -7,8 +7,15 @@ import { UilFacebookF } from '@iconscout/react-unicons';
 import { UilTwitter } from '@iconscout/react-unicons';
 import { UilWhatsapp } from '@iconscout/react-unicons';
 import { UilInstagram } from '@iconscout/react-unicons';
+import { useEffect } from "react";
 
 const AboutUs = () => {
+    useEffect(() => {
+        document.body.classList.add("about-page");
+        return () => {
+          document.body.classList.remove("about-page");
+        };
+      }, []);
     return (
         <div className="about-us">
             <Row>

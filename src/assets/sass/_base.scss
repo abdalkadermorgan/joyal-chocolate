@@ -7,8 +7,11 @@
   margin-left: 200px;
   padding: 2rem;
 }
-.about-us-main {
-  background-color: $primary;
+.about-page {
+  #main-content {
+    background-color: $primary;
+  }
+
 }
 h1,
 h2 {

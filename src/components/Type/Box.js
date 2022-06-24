@@ -28,7 +28,7 @@ const Box = () => {
   return (
     <div className="box-type">
       {boxType.map((data,index) => (
-        <div className="select-box" key={`box-type-${index}`}>
+        <label htmlFor={`box-${index}`} className="select-box" key={`box-type-${index}`}>
           <div className="content">
             <div className="box-img">
               <img src={images.onePart} alt={data.title} />
@@ -38,11 +38,11 @@ const Box = () => {
               <p>$ {data.price}</p>
             </div>
           </div>
-            <Form.Check className="checkbox-select" name="group1" type="radio" aria-label="option 1" value={value} id={index}
+            <Form.Check className="checkbox-select" name="group1" type="radio" aria-label="option 1" value={value} id={`box-${index}`}
             ref={checkRef}
             onChange={() => checkHandler()}
             />
-        </div>
+        </label>
       ))}
     </div>
   );

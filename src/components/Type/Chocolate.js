@@ -24,7 +24,7 @@ const Chocolate = () => {
   return (
     <div className="box-type">
       {boxType.map((data, index) => (
-        <div className="select-box" key={`box-type-${index}`}>
+        <label htmlFor={`chocalate-${index}`} className="select-box" key={`box-type-${index}`}>
           <div className="content">
             <div className="box-img chocalate-img">
               <img src={images.ovalChocolate} alt={data.title} />
@@ -43,11 +43,11 @@ const Chocolate = () => {
             type="checkbox"
             aria-label="option 1"
             value={value}
-            id={index}
+            id={`chocalate-${index}`}
             ref={checkRef}
             onChange={() => checkHandler()}
           />
-        </div>
+        </label>
       ))}
     </div>
   );

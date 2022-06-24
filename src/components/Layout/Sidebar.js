@@ -1,6 +1,5 @@
 import { images } from "../../assets/images";
-import { UilBars } from '@iconscout/react-unicons'
-import { Col } from "react-bootstrap";
+import { UilBars } from '@iconscout/react-unicons';
 
 const Sidebar = () => {
     return (
@@ -30,7 +29,9 @@ const Sidebar = () => {
                         </ol>
                     </div>
                     <div className="menu">
-                        <UilBars />
+                        <a href="/about-us">
+                            <UilBars />
+                        </a>
                     </div>
                 </div>
             </div>
