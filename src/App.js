@@ -19,7 +19,7 @@ function App() {
       <Fragment>
         <Sidebar />
         <div id="main-content">
-        <Row className="h-100 align-items-center justify-content-center form-content">
+        <Row className=" align-items-center justify-content-center form-content">
           <BrowserRouter>
             <Routes>
                 <Route path="/" index element={<ChooseYourBox />} />
@@ -31,7 +31,6 @@ function App() {
                 <Route path="about-us" element={<AboutUs />} />
             </Routes>
           </BrowserRouter>
-          
         </Row>
         </div>
       </Fragment>
