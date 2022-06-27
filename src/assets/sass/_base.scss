@@ -106,6 +106,20 @@ ul {
       transform: translateY(-50%);
     }
   }
+  @media (max-width: 992px) {
+    & {
+      padding-left: 0;
+      &::before {
+        display: none;
+      }
+    }
+    &-about {
+      padding-left: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
 }
 .slide-next,
 .slide-prev {

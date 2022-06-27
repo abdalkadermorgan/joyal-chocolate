@@ -15,16 +15,16 @@ const Steps = (props) => {
   return (
     <div className="steps">
       <Row className="justify-content-center">
-        <Col xs={2}>
+        <Col sm={2} xs={3}>
           <button onClick={handlePrev} className="btn btn-step-prev">Prev Step</button>
         </Col>
-        <Col xs={4}>
+        <Col sm={4} xs={6}>
           <div className="total-amount">
             <p>Total Amount</p>
             <div className="price">$ 325</div>
           </div>
         </Col>
-        <Col xs={2}>
+        <Col sm={2} xs={3}>
           <button onClick={handleNext} className="btn btn-step-next">Next Step</button>
         </Col>
       </Row>

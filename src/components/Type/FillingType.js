@@ -4,27 +4,27 @@ import "swiper/css/navigation";
 import { useState } from "react";
 import { images } from "../../assets/images";
 import data from "../data.json";
-import { UilArrowRight } from '@iconscout/react-unicons';
-import { UilArrowLeft } from '@iconscout/react-unicons'
-import SwiperButtonNext from '../Swiper/SwiperButtonNext';
-import SwiperButtonPrev from '../Swiper/SwiperButtonPrev';
+import { UilArrowRight } from "@iconscout/react-unicons";
+import { UilArrowLeft } from "@iconscout/react-unicons";
+import SwiperButtonNext from "../Swiper/SwiperButtonNext";
+import SwiperButtonPrev from "../Swiper/SwiperButtonPrev";
 
 const FillingType = () => {
   const [select, setSelect] = useState();
   const [isActive, setIsActive] = useState();
-console.log("select =>", select);
-console.log("isActive =>", isActive);
+  console.log("select =>", select);
+  console.log("isActive =>", isActive);
 
   const handleClickNext = () => {
-    document.getElementById('slide-next').click();
-  }
+    document.getElementById("slide-next").click();
+  };
   const handleClickPrev = () => {
-    document.getElementById('slide-prev').click();
-  }
+    document.getElementById("slide-prev").click();
+  };
 
   const chocolate_type = data.chocolate_type;
 
-  return  (
+  return (
     <div className="border-section">
       {chocolate_type.map((type, i) => (
         <div className="select-filling" key={`filing-${i}`}>
@@ -33,30 +33,54 @@ console.log("isActive =>", isActive);
               <img src={images.ovalChocolate} alt="" />
             </div>
             <h4>
-              {type.name} 
+              {type.name}
               {/* <span className="text-danger">{type.id}</span> */}
             </h4>
           </div>
           <div className="tab-main">
             <Swiper
               className="mySwiper"
-              spaceBetween={5}
-              slidesPerView={4}
+              slidesPerView={2}
+              spaceBetween={10}
+              breakpoints={{
+                576: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                992: {
+                  slidesPerView: 3,
+                  spaceBetween: 40,
+                },
+                1200: {
+                  slidesPerView: 3,
+                  spaceBetween: 50,
+                },
+                1400: {
+                  slidesPerView: 4,
+                  spaceBetween: 50,
+                },
+              }}
             >
               {type.filling_type.map((filling, index) => (
                 <SwiperSlide
                   key={`filling-type-${index}`}
                   onClick={(e) => setSelect(filling)}
                 >
-                  <div onClick={() => { setIsActive(filling.id); }} 
-                  className={`filling-type   ${isActive === filling.id ? "active" : ""}`}>
+                  <div
+                    onClick={() => {
+                      setIsActive(filling.id);
+                    }}
+                    className={`filling-type   ${
+                      isActive === filling.id ? "active" : ""
+                    }`}
+                  >
                     <div className="tab-header">
                       <div className="tab-header_img">
                         <img src={images.biscuitFilling} alt="" />
                       </div>
                       <div className="tab-header_title">
                         <h4>
-                          {filling.name} 
+                          {filling.name}
                           {/* <span className="text-danger">{filling.id}</span> */}
                         </h4>
                       </div>
@@ -64,11 +88,19 @@ console.log("isActive =>", isActive);
                   </div>
                 </SwiperSlide>
               ))}
-              <SwiperButtonNext><UilArrowRight /></SwiperButtonNext>
-              <SwiperButtonPrev><UilArrowLeft /></SwiperButtonPrev>
+              <SwiperButtonNext>
+                <UilArrowRight />
+              </SwiperButtonNext>
+              <SwiperButtonPrev>
+                <UilArrowLeft />
+              </SwiperButtonPrev>
             </Swiper>
-            <button onClick={handleClickNext} className='slide-next'><UilArrowRight /></button>
-            <button onClick={handleClickPrev} className='slide-prev'><UilArrowLeft /></button>
+            <button onClick={handleClickNext} className="slide-next">
+              <UilArrowRight />
+            </button>
+            <button onClick={handleClickPrev} className="slide-prev">
+              <UilArrowLeft />
+            </button>
           </div>
           <div className="marge-with">
             <span>Marge With: </span>
@@ -77,7 +109,6 @@ console.log("isActive =>", isActive);
                 <p>
                   {marge.name}
                   {/* <span className="text-danger">{marge.id}</span> */}
-                  
                 </p>
               </div>
             ))}
