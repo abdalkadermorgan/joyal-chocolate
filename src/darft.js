@@ -1,84 +1,67 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper";
-import { useState } from "react";
-import { Tab, Tabs } from "react-bootstrap";
 import { images } from "../../assets/images";
+import React, { useRef, useState } from "react";
 import data from "../data.json";
 
-const FillingType = () => {
+import Form from "react-bootstrap/Form";
 
-  const [select, setSelect] = useState();
-  const chocolate_type = data.chocolate_type;
+const Box = () => {
+  const [value, setValue] = useState();
+  // const [checked, setChecked] = useState(false);
 
-  console.log(select);
+  const boxType = data.box_type;
+  console.log("value =>", value);
+  // console.log(boxType);
+  
+  // const checkRef = useRef();
+
+  //   const check = {
+  //     check: checkRef.current,
+  //   };
+  //   console.log("check =>", check);
+  const checkHandler = (id) => {
+    // if (check === true) {
+    //     setChecked(true);
+
+    // }
+    const check = boxType.filter( e => e.id === id);
+    setValue(check);
+  };
 
 
-  return chocolate_type.map((type, index) => (
-    <div className="select-filling" key={`filing-${index}`}>
-      <div className="chocolate-content">
-        <div className="chocolate-img">
-          <img src={images.ovalChocolate} alt="" />
-        </div>
-        <h4>{type.name} {index}</h4>
-      </div>
-      <div
-        className='tab-main'
-      >
-        <Swiper
-          navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
-          spaceBetween={0}
-          slidesPerView={3}
+  return (
+    <div className="box-type">
+      {boxType.map((data, index) => (
+        <label
+          htmlFor={`box-${index}`}
+          className="select-box"
+          key={`box-type-${index}`}
         >
-          {type.filling_type.map((filling, i) => (
-            
-              <SwiperSlide
-              key={`filling-type-${i}`}
-              onClick={() => {
-                setSelect(filling);
-                console.log(filling);
-              }}
-              >
-                <div className='filling-type'>
-                  <div className="tab-header">
-                    <div className="tab-header_img">
-                      <img src={images.biscuitFilling} alt="" />
-                    </div>
-                    <div className="tab-header_title">
-                      <h4>
-                        {filling.name}  {i}
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </SwiperSlide>
-       
-          ))}
-        </Swiper>
-                <div className="marge-with">
-                  <span>Marge With: </span>
-                  {select?.marge.map((s, i) => (
-                    <div className='' key={`marge-${i}${index}`}>
-                      <p>{s.name}{i}</p>
-                    </div>
-                  ))}
-                </div>
-      </div>
-    </div >
-  ));
+          <div className="content">
+            <div className="box-img">
+              <img src={images.onePart} alt={data.title} />
+            </div>
+            <div className="num-price">
+              <h4>{data.title}</h4>
+              <p>$ {data.price}</p>
+            </div>
+          </div>
+          <Form.Check
+            className="checkbox-select"
+            name="group1"
+            type="radio"
+            aria-label="option 1"
+            value={data.id}
+            id={`box-${index}`} 
+            checked={value?.id === data.id ? true : false}
+            // ref={checkRef}
+            // onChange={() => checkHandler()}
+            // onChange={() => setValue(data)}
+            onChange={() => checkHandler(data.id)}
+          />
+        </label>
+      ))}
+    </div>
+  );
 };
-{/* <Fragment>
-        <Sidebar />
-        <div id="main-content">
-          <Row className="h-100 align-items-center justify-content-center form-content">
-            <SelectTitle />
-            <TypeBox />
-            <Steps />
-          </Row>
-        </div>
-      </Fragment> */}
 
-export default FillingType;
+export default Box;
