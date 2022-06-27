@@ -7,7 +7,7 @@ const Order = () => {
   return (
     <Fragment>
       <Col lg={5}>
-        <SelectTitle title="Thanks for your order" />
+        <SelectTitle title="Thanks for your order" class="title-static" tr />
       </Col>
       <Col lg={7}>
         <OrderNumber />

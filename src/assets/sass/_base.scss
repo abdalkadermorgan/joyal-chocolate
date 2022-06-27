@@ -9,6 +9,7 @@
   @media(max-width: 992px) {
     &{
       margin-left: 172px;
+      height: auto;
     }
     @media(max-width:768px) {
       &{
@@ -118,6 +119,12 @@ ul {
       &::before {
         display: none;
       }
+    }
+  }
+
+  @media(max-width: 768px) {
+    & {
+      
     }
   }
 }

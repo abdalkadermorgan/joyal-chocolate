@@ -13,23 +13,28 @@
     font-family: $font-family-number;
     color: #f9cb87;
     line-height: 1;
-    @media(max-width: 1200px) {
+    @media (max-width: 1200px) {
       & {
         font-size: 20rem;
       }
     }
-    @media(max-width: 992px) {
+    @media (max-width: 992px) {
       & {
         font-size: 15rem;
         line-height: 0.75;
       }
     }
-    @media(max-width:768px) {
-      &{
+    @media (max-width: 768px) {
+      & {
         font-size: 11rem;
       }
     }
-    
+    @media (max-width: 576px) {
+      & {
+        font-size: 6rem;
+        opacity: 0.7;
+      }
+    }
   }
   h2 {
     color: $primary;
@@ -39,28 +44,50 @@
     top: 50%;
     left: 50%;
     max-width: 465px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
     text-align: left;
-    @media(max-width: 1400px) {
+    margin-bottom: 0;
+    @media (max-width: 1400px) {
       & {
         font-size: 4.5rem;
       }
     }
-    @media(max-width: 1200px) {
+    @media (max-width: 1200px) {
       & {
         font-size: 3.5rem;
       }
     }
-    @media(max-width: 992px) {
+    @media (max-width: 992px) {
       & {
         max-width: 350px;
       }
     }
-    @media(max-width:768px) {
-      &{
+    @media (max-width: 768px) {
+      & {
         font-size: 3rem;
         max-width: 300px;
+      }
+    }
+    @media (max-width: 576px) {
+      & {
+        font-size: 2rem;
+        max-width: 100%;
+        position: static;
+        top: 0;
+        left: 0;
+        transform: none;
+        text-align: center;
+      }
+    }
+    @media (max-width: 992px) {
+      &.title-static {
+        position: static;
+        transform: none;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        max-width: 100%;
+        text-align: center;
       }
     }
   }

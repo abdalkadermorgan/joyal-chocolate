@@ -20,7 +20,7 @@
   }
   @media (max-width: 768px) {
     & {
-      margin-top: 30px;
+      margin-top: 40px;
     }
   }
   .select-box {
@@ -179,6 +179,11 @@
   border-bottom: 3px solid $secondary;
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
+  @media(max-width: 576px) {
+    & {
+      margin-top: 40px;
+    }
+  }
   &:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
@@ -319,6 +324,9 @@
 
 .card-message,
 .form-information {
+  @media(max-width: 576px) {
+    margin-top: 40px;
+  }
   label {
     font-family: $font-family-base;
     font-size: 0.8rem;
@@ -338,9 +346,21 @@
     border-radius: 30px;
     padding: 0.8rem 1rem;
   }
+
 }
 
 .order-number {
+  @media(max-width: 992px) {
+    & {
+      padding-left: 0;
+      text-align: center;
+    }
+  }
+  @media(max-width: 576px) {
+    & {
+      margin-top: 40px;
+    }
+  }
   span {
     font-size: 1rem;
     color: $primary;
@@ -358,13 +378,22 @@
 
 .about-us {
   &-padding {
-    padding: 0 50px;
+    @media(min-width: 992px) {
+      padding: 0 50px;
+    }
   }
   h2 {
     color: $secondary;
     font-size: 4.8rem;
     font-family: $headings-font-family;
     margin-bottom: 4rem;
+    @media(max-width: 1200px) {
+      & {
+        font-size: 3.5rem;
+        margin-bottom: 3rem;
+      }
+    }
+    
   }
   p {
     color: $white;
@@ -414,6 +443,18 @@
       }
     }
   }
+  @media(max-width: 992px) {
+    h2 {
+      font-size: 3.5rem;
+      margin-bottom: 2rem;
+    }
+    p {
+      margin-bottom: 2rem;
+    }
+    .about-img {
+      margin-bottom: 2rem;
+    }
+  }
 }
 
 .steps {
@@ -427,6 +468,7 @@
   .col-6,.col-sm-4 {
     padding: 0;
   }
+
   .btn {
     background-color: $secondary;
     color: $white;
