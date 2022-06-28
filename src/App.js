@@ -1,4 +1,7 @@
-import { Fragment, useEffect } from "react";
+import { configureStore } from "@reduxjs/toolkit";
+import { persistStore } from "redux-persist";
+import { Provider } from 'react-redux';
+import { reducer } from "./store/store";
 import { Row } from "react-bootstrap";
 import "./assets/css/app.css";
 import Sidebar from "./components/Layout/Sidebar";
@@ -10,13 +13,24 @@ import GiftCardMessage from "./pages/GiftCardMessage";
 import FormInformation from "./pages/FormInformation";
 import Order from "./pages/Order";
 import AboutUs from "./pages/AboutUs";
+import { PersistGate } from "redux-persist/integration/react";
+
+const store = configureStore({
+  reducer: reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
+});
+const persistor = persistStore(store);
+
 
 function App() {
 
   // const activeClass = (route) => { return location.pathname === route ? "active" : null }
 
   return (
-      <Fragment>
+    <Provider store={store}>
+      <PersistGate  persistor={persistor}>
         <Sidebar />
         <div id="main-content">
         <Row className=" align-items-center justify-content-center form-content">
@@ -33,7 +47,9 @@ function App() {
           </BrowserRouter>
         </Row>
         </div>
-      </Fragment>
+      </PersistGate>
+      
+    </Provider>
   );
 }
 

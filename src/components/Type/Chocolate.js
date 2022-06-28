@@ -15,7 +15,7 @@ const Chocolate = () => {
     const check = {
       check: checkRef.current.checked,
     };
-    if (check == true) {
+    if (check === true) {
     }
     console.log(check);
     setValue(check);

@@ -2,18 +2,21 @@
   "box_type": [
     {
       "id": 1,
+      "box_number":1,
       "title": "One Part Box",
       "img_url": "",
       "price": 32
     },
     {
       "id": 2,
+      "box_number":2,
       "title": "Tow Part Box",
       "img_url": "images.onePart",
       "price": 44
     },
     {
       "id": 3,
+      "box_number":3,
       "title": "Three Part Box",
       "img_url": "images.onePart",
       "price": 53

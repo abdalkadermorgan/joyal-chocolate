@@ -1,30 +1,29 @@
+
 import { images } from "../../assets/images";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import data from "../data.json";
 
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../../store/store";
 
 const Box = () => {
-  const [value, setValue] = useState();
-  // const [checked, setChecked] = useState(false);
-
   const boxType = data.box_type;
-  console.log("value =>", value);
-  // console.log(boxType);
+  // const [value, setValue] = useState(boxType[0]);
+
   
-  // const checkRef = useRef();
+  // console.log("value =>", value);
+  
+  const [state, setState] = useState(boxType[0]);
+  
+  const { cart } = useSelector((state) => state);
+    console.log("cart", cart);
+    console.log("state", state);
 
-  //   const check = {
-  //     check: checkRef.current,
-  //   };
-  //   console.log("check =>", check);
-  const checkHandler = (id) => {
-    // if (check === true) {
-    //     setChecked(true);
-
-    // }
-    const check = boxType.filter( e => e.id === id);
-    setValue(check);
+    const dispatch = useDispatch();
+  
+  const checkHandler = (data) => {
+    dispatch(Actions.SetAddedCart({...state}));
   };
 
 
@@ -52,11 +51,10 @@ const Box = () => {
             aria-label="option 1"
             value={data.id}
             id={`box-${index}`} 
-            checked={value?.id === data.id ? true : false}
-            // ref={checkRef}
-            // onChange={() => checkHandler()}
-            // onChange={() => setValue(data)}
-            onChange={() => checkHandler(data.id)}
+            // checked={value.id === data.id ? true : false}
+            checked={state.id === data.id ? true : false}
+            // onChange={() => checkHandler(data)}
+            onChange={() => checkHandler(setState(data))}
           />
         </label>
       ))}
