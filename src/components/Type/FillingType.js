@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { images } from "../../assets/images";
 import data from "../data.json";
 import { UilArrowRight } from "@iconscout/react-unicons";
@@ -10,10 +10,30 @@ import SwiperButtonNext from "../Swiper/SwiperButtonNext";
 import SwiperButtonPrev from "../Swiper/SwiperButtonPrev";
 
 const FillingType = () => {
-  const [select, setSelect] = useState();
+  const [select, setSelect] = useState([]);
+  const asd = [
+    {
+      id: 1,
+      name: "Oval Chocolate",
+      price: 13,
+      peace: 12,
+      img_url: "",
+      filling_type: {
+        id: 1,
+        name: "Pistachio1",
+        price: 10,
+        img_url: "",
+        marge: {
+          id: 1,
+          name: "none1",
+          price: 0,
+        },
+      },
+    },
+  ];
   const [isActive, setIsActive] = useState();
-  console.log("select =>", select);
-  console.log("isActive =>", isActive);
+  // console.log("select =>", select);
+  // console.log("isActive =>", isActive);
 
   const handleClickNext = () => {
     document.getElementById("slide-next").click();
@@ -21,6 +41,26 @@ const FillingType = () => {
   const handleClickPrev = () => {
     document.getElementById("slide-prev").click();
   };
+
+  useEffect(() => {
+    setSelect(
+      data.chocolate_type.map((e) => {
+        return {
+          id: e.id,
+          name: e.name,
+          price: e.price,
+          peace: e.peace,
+          img_url: e.img_url,
+          filling_type: {
+            id: -1,
+            marge: {
+              id: -1,
+            },
+          },
+        };
+      })
+    );
+  }, []);
 
   const chocolate_type = data.chocolate_type;
 
@@ -62,16 +102,31 @@ const FillingType = () => {
               }}
             >
               {type.filling_type.map((filling, index) => (
-                <SwiperSlide
-                  key={`filling-type-${index}`}
-                  onClick={(e) => setSelect(filling)}
-                >
+                <SwiperSlide key={`filling-type-${index}`} onClick={() => {}}>
                   <div
                     onClick={() => {
-                      setIsActive(filling.id);
+                      const newSelect = select.map((e) => {
+                        if (e.id === type.id) {
+                          e = {
+                            ...e,
+                            filling_type: filling,
+                            marge: {},
+                          };
+                        }
+                        return e;
+                      });
+
+                      setSelect(newSelect);
+                      // setIsActive(filling.id);
+                      // console.log(select,filling ,  select.find(e => e.filling?.id === filling.id ));
                     }}
                     className={`filling-type   ${
-                      isActive === filling.id ? "active" : ""
+                      !!select.find(
+                        (e) =>
+                          e.filling_type?.id === filling.id && e.id === type.id
+                      )
+                        ? "active"
+                        : ""
                     }`}
                   >
                     <div className="tab-header">
@@ -85,6 +140,41 @@ const FillingType = () => {
                         </h4>
                       </div>
                     </div>
+
+                    {!!select.find(
+                      (e) =>
+                        e.filling_type?.id === filling.id && e.id === type.id
+                    ) && (
+                      <div className="marge-with">
+                        <span>Marge With: </span>
+                        {chocolate_type[i].filling_type[index].marge?.map(
+                          (marge, i) => (
+                            <div
+                              className="marge-content"
+                              key={`marge-${i}`}
+                              onClick={() => {
+                                const newSelect = select.map((e) => {
+                                  if (
+                                    e.id === type.id &&
+                                    e.filling_type?.id === filling.id
+                                  ) {
+                                    e = {
+                                      ...e,
+                                      marge: marge,
+                                    };
+                                  }
+                                  return e;
+                                });
+
+                                setSelect(newSelect);
+                              }}
+                            >
+                              <p>{marge.name}</p>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    )}
                   </div>
                 </SwiperSlide>
               ))}
@@ -102,17 +192,18 @@ const FillingType = () => {
               <UilArrowLeft />
             </button>
           </div>
-          <div className="marge-with">
+          {/* <div className="marge-with">
             <span>Marge With: </span>
             {select?.marge?.map((marge, i) => (
               <div className="marge-content" key={`marge-${i}`}>
                 <p>
+                
                   {marge.name}
-                  {/* <span className="text-danger">{marge.id}</span> */}
+
                 </p>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       ))}
     </div>
