@@ -1,11 +1,19 @@
 
-const Marge = (props) => {
+const Marge = ({marge}) => {
 
   return (
-    <div className="marge-content">
-      <p>
-        {props.name}
-      </p>
+    <div className="marge-with">
+      <span>Marge With: </span>
+      {marge?.map(
+        (marge, i) => (
+          <div
+            className="marge-content"
+            key={`marge-${i}`}
+          >
+            <p>{marge.name}</p>
+          </div>
+        )
+      )}
     </div>
   );
 };
