@@ -153,5 +153,18 @@
         }
       }
     }
+    .about-us_close {
+      display: none;
+    }
   }
 }
+
+.about-page {
+  .content-sidebar {
+    .menu {
+      .about-us_close {display: block;}
+      .about-us_bar {display: none;}
+    }
+  }  
+}
+

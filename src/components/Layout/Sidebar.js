@@ -1,5 +1,6 @@
 import { images } from "../../assets/images";
 import { UilBars } from '@iconscout/react-unicons';
+import { UilMultiply } from '@iconscout/react-unicons'
 
 const Sidebar = () => {
     return (
@@ -29,8 +30,11 @@ const Sidebar = () => {
                         </ol>
                     </div>
                     <div className="menu">
-                        <a href="/about-us">
+                        <a href="/about-us" className="about-us_bar">
                             <UilBars />
+                        </a>
+                        <a href="/" className="about-us_close">
+                            <UilMultiply />
                         </a>
                     </div>
                 </div>

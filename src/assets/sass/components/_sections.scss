@@ -520,3 +520,11 @@
     border-top-left-radius: 60px;
   }
 }
+
+.about-page {
+  .sidebar {
+    .point-steps {
+      display: none;
+    }
+  }
+}

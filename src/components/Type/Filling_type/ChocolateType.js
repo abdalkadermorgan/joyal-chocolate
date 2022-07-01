@@ -5,7 +5,7 @@ import { UilArrowLeft } from "@iconscout/react-unicons";
 import { images } from "../../../assets/images";
 import ChocolateFillingType from "./ChocolateFillingType";
 import Marge from "./Marge";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const ChocolateType = ({type}) => {
   const [state, setState] = useState({});
@@ -30,12 +30,7 @@ const ChocolateType = ({type}) => {
           filling_type={type.filling_type}
           onSelect={(filling) => setState(filling)}
         />
-        <button onClick={handleClickNext} className="slide-next">
-          <UilArrowRight />
-        </button>
-        <button onClick={handleClickPrev} className="slide-prev">
-          <UilArrowLeft />
-        </button>
+        
       </div>
       <Marge
         marge={state.marge}
