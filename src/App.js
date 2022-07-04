@@ -6,7 +6,7 @@ import { Row } from "react-bootstrap";
 import "./assets/css/app.css";
 import Sidebar from "./components/Layout/Sidebar";
 import ChooseYourBox from "./pages/ChooseYourBox";
-import { BrowserRouter ,Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ChooseChocolate from "./pages/ChooseChocolate";
 import ChooseFilling from "./pages/ChooseFilling";
 import GiftCardMessage from "./pages/GiftCardMessage";
@@ -30,12 +30,12 @@ function App() {
 
   return (
     <Provider store={store}>
-      <PersistGate  persistor={persistor}>
-        <Sidebar />
-        <div id="main-content">
-        <Row className=" align-items-center justify-content-center form-content">
-          <BrowserRouter>
-            <Routes>
+      <PersistGate persistor={persistor}>
+        <BrowserRouter>
+          <Sidebar />
+          <div id="main-content">
+            <Row className=" align-items-center justify-content-center form-content">
+              <Routes>
                 <Route path="/" index element={<ChooseYourBox />} />
                 <Route path="choose-chocolate" element={<ChooseChocolate />} />
                 <Route path="choose-filling" element={<ChooseFilling />} />
@@ -43,12 +43,12 @@ function App() {
                 <Route path="form-information" element={<FormInformation />} />
                 <Route path="order-number" element={<Order />} />
                 <Route path="about-us" element={<AboutUs />} />
-            </Routes>
-          </BrowserRouter>
-        </Row>
-        </div>
+              </Routes>
+            </Row>
+          </div>
+        </BrowserRouter>
       </PersistGate>
-      
+
     </Provider>
   );
 }

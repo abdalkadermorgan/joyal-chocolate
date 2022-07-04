@@ -1,19 +1,34 @@
 import { images } from "../../assets/images";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import data from "../data.json";
 
 import Form from "react-bootstrap/Form";
 
 const Box = () => {
   const boxType = data.box_type;
-  const [value, setValue] = useState(boxType[0]);
-  
-  console.log("value =>", value);
-  
-  const checkHandler = (data) => {
-    setValue(data);
-  };
+  // const [value, setValue] = useState(boxType[0]);
+  const [select, setSelect] = useState(boxType[0]);
 
+  console.log("select =>", select);
+
+
+  // const checkHandler = (data) => {
+  //   setValue(data);
+  // };
+
+  useEffect(() => {
+    setSelect(
+      data.box_type.find((e) => {
+        return {
+          id: -1,
+          box_number: e.box_number,
+          title: e.title,
+          img_url: e.img_url,
+          price: e.price,
+        };
+      })
+    );
+  }, []);
 
   return (
     <div className="box-type">
@@ -22,6 +37,8 @@ const Box = () => {
           htmlFor={`box-${index}`}
           className="select-box"
           key={`box-type-${index}`}
+          // onClick={ () => setSelect(data)}
+          
         >
           <div className="content">
             <div className="box-img">
@@ -38,12 +55,12 @@ const Box = () => {
             type="radio"
             aria-label="option 1"
             value={data.id}
-            id={`box-${index}`} 
-            checked={value.id === data.id ? true : false}
+            id={`box-${index}`}
+            checked={select.id === data.id ? true : false}
             // ref={checkRef}
             // onChange={() => checkHandler()}
             // onChange={() => setValue(data)}
-            onChange={() => checkHandler(data)}
+            onChange={() => setSelect(data)}
           />
         </label>
       ))}
