@@ -1,0 +1,26 @@
+{
+  "order": [
+    {
+      "title": "Tow Part Box",
+      "box_number": 2,
+      "chocolate_type": [
+        {
+          "id": 1
+        },
+        {
+          "id": 2
+        }
+      ],
+      "filling_type": [
+        {
+          "id": 1,
+          "merge": {}
+        },
+        {
+          "id": 2,
+          "merge": {}
+        }
+      ]
+    }
+  ]
+}

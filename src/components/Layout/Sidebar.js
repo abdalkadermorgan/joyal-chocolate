@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 
 const Sidebar = () => {
     let {pathname} = useLocation();
-    console.log({pathname});
     return (
         <div className="sidebar">
             <div className="main-sidebar">

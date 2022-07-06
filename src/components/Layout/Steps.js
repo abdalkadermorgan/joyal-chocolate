@@ -1,7 +1,14 @@
 import { Col, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Steps = (props) => {
+
+  const { cart } = useSelector((state) => state);
+
+  const totalAmount = () => {
+		return cart.price;
+	};
 
   const navigate = useNavigate();
 
@@ -21,7 +28,7 @@ const Steps = (props) => {
         <Col sm={4} xs={6}>
           <div className="total-amount">
             <p>Total Amount</p>
-            <div className="price">$ 325</div>
+            <div className="price">$ {totalAmount()}</div>
           </div>
         </Col>
         <Col sm={2} xs={3}>

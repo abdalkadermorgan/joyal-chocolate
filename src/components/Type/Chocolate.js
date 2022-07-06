@@ -6,7 +6,7 @@ import { Form } from "react-bootstrap";
 const Chocolate = () => {
   const [value, setValue] = useState([]);
   
-  // console.log("value =>", value);
+  console.log("value =>", value);
   const handleChange = (event, data) => {
     if(value.includes(data)){
       setValue(value.filter((e) => e !== data))

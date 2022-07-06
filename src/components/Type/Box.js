@@ -1,34 +1,31 @@
 import { images } from "../../assets/images";
-import React, { useEffect, useState } from "react";
 import data from "../data.json";
 
 import Form from "react-bootstrap/Form";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../../store/store";
 
 const Box = () => {
   const boxType = data.box_type;
-  // const [value, setValue] = useState(boxType[0]);
-  const [select, setSelect] = useState(boxType[0]);
+  const { cart } = useSelector((state) => state);
 
-  console.log("select =>", select);
+  console.log("cart => => =>", cart);
 
+  const dispatch = useDispatch();
 
-  // const checkHandler = (data) => {
-  //   setValue(data);
-  // };
-
-  useEffect(() => {
-    setSelect(
-      data.box_type.find((e) => {
-        return {
-          id: -1,
-          box_number: e.box_number,
-          title: e.title,
-          img_url: e.img_url,
-          price: e.price,
-        };
+  const addNewInfo = (data) => {
+    console.log("data=", data);
+    dispatch(
+      Actions.SetAddedCart({
+        ...cart,
+        title: data.title,
+        id: data.id,
+        price: data.price,
+        box_number: data.box_number
       })
+      
     );
-  }, []);
+  };
 
   return (
     <div className="box-type">
@@ -37,8 +34,6 @@ const Box = () => {
           htmlFor={`box-${index}`}
           className="select-box"
           key={`box-type-${index}`}
-          // onClick={ () => setSelect(data)}
-          
         >
           <div className="content">
             <div className="box-img">
@@ -56,11 +51,8 @@ const Box = () => {
             aria-label="option 1"
             value={data.id}
             id={`box-${index}`}
-            checked={select.id === data.id ? true : false}
-            // ref={checkRef}
-            // onChange={() => checkHandler()}
-            // onChange={() => setValue(data)}
-            onChange={() => setSelect(data)}
+            checked={cart.id === data.id ? true : false}
+            onChange={() => addNewInfo(data)}
           />
         </label>
       ))}

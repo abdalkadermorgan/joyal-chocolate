@@ -6,8 +6,27 @@ export const actionTypes = {
 };
 
 const initialState = {
-  cart: [],
+    cart :
+      {
+        id: -1,
+        title: "",
+        box_number: -1,
+        price: 0,
+        chocolate_type: [
+          {
+            id: -1
+          }
+        ],
+        filling_type: [
+          {
+            id: -1,
+            merge: {}
+          }
+        ]
+      }
+    
 };
+// console.log(initialState.cart.box_type.box_number);
 
 export const reducer = persistReducer(
   {
