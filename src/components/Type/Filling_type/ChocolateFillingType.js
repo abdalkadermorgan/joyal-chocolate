@@ -14,7 +14,6 @@ import { Actions } from "../../../store/store";
 const ChocolateFillingType = ({ filling_type, onSelect, type_id }) => {
   const [state, setState] = useState({});
   // console.log(state);
-
   const { cart } = useSelector((state) => state);
   console.log("cart =>", cart);
   const dispatch = useDispatch();
@@ -22,18 +21,18 @@ const ChocolateFillingType = ({ filling_type, onSelect, type_id }) => {
 
   const addNewInfo = (filling) => {
     console.log("fillingCho =>", filling);
+
     if(cart.filling_type.find( e => {
-      if (e.type_id === type_id){
+      if ( e.type_id === type_id){
       return  dispatch(
           Actions.SetAddedCart({
             ...cart,
-            filling_type: cart.filling_type.filter((e) => e.id !== filling.id)
+            filling_type: cart.filling_type.filter(e => e.id !== filling.id)
           })
         );
       }
     }
     )){
-      
     } else {
       dispatch(
         Actions.SetAddedCart({

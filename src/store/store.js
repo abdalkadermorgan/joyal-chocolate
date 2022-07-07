@@ -16,16 +16,17 @@ const initialState = {
           {
             id: -1,
             name: "",
-          }
-        ],
-        filling_type: [
-          {
-            id: -1,
-            name: "",
-            type_id: -1,
-            merge: {}
+            filling_type: [
+              {
+                id: -1,
+                name: "",
+                type_id: -1,
+                merge: {}
+              }
+            ]
           }
         ]
+       
       }
     
 };
