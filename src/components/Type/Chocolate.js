@@ -1,57 +1,36 @@
-import { useRef, useState } from "react";
 import data from "../data.json";
+import { useDispatch, useSelector } from "react-redux";
 import { images } from "../../assets/images";
 import { Form } from "react-bootstrap";
+import { Actions } from "../../store/store";
 
 const Chocolate = () => {
-  const [value, setValue] = useState([]);
-  
-  console.log("value =>", value);
-  const handleChange = (event, data) => {
-    if(value.includes(data)){
-      setValue(value.filter((e) => e !== data))
-      console.log("error");
-    } else {
-      setValue([...value,data]);
-    }
-    
-  }
-
   const boxType = data.chocolate_type;
-  // console.log(boxType);
 
-  // const checkRef = useRef("");
+  const { cart } = useSelector((state) => state);
+  console.log("cart =>", cart);
+  const dispatch = useDispatch();
 
-  // const checkHandler = (data) => {
-  // const newValue = [...value];
-  // newValue.push(data);
-  // setValue(newValue);
-  // const check = {
-  //   check: checkRef.current.checked,
-  // };
-  // if (check === true) {
-  // }
-  // console.log(check);
-  // setValue(check);
-  // console.log("value =>", value);
-  // };
+  const addNewInfo = (data) => {
+    console.log("dataCho =>", data);
+    if(cart.chocolate_type.find(e => e.id === data.id)){
+      dispatch(
+        Actions.SetAddedCart({
+          ...cart,
+          chocolate_type: cart.chocolate_type.filter(e => e.id !== data.id)
+        })
+        
+      );
+    } else {
+      dispatch(
+        Actions.SetAddedCart({
+          ...cart,
+          chocolate_type: [...cart.chocolate_type, {id: data.id, name: data.name}]
+        })
+      );
+    }
+  };
 
-  // const selectHandler = (event, data) => {
-
-  //   console.log('data =======>' , data)
-  //   if(value.includes(data)) {
-  //     value = value.filter((item) => item !== data);
-  //     // setValue(value.delete(data));
-  //     console.log('11111111111')
-  //     return value;
-      
-  //   }else {
-  //     console.log('222222222222')
-  //     setValue(value.push(data));
-  //     // value = value.filter((item) => item !== data);
-  //     return value;
-  //   }
-  // }
 
   return (
     <div className="box-type">
@@ -78,11 +57,10 @@ const Chocolate = () => {
             name="group1"
             type="checkbox"
             aria-label="option 1"
-            value={value}
+            value={data.id}
             id={`chocalate-${index}`}
-            // ref={checkRef}
-            // onChange={event => selectHandler(event, data)}
-            onChange={event => handleChange(event, data)}
+            checked={cart.chocolate_type.filter(e => e.id === data.id).length ? true : false}
+            onChange={() => addNewInfo(data)}
           />
         </label>
       ))}

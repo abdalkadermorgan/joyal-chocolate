@@ -1,13 +1,7 @@
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { useEffect, useState } from "react";
-import { images } from "../../assets/images";
 import data from "../data.json";
-import { UilArrowRight } from "@iconscout/react-unicons";
-import { UilArrowLeft } from "@iconscout/react-unicons";
-import SwiperButtonNext from "../Swiper/SwiperButtonNext";
-import SwiperButtonPrev from "../Swiper/SwiperButtonPrev";
 import ChocolateType from "./Filling_type/ChocolateType";
 
 const FillingType = () => {

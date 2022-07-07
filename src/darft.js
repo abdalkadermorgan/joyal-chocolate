@@ -1,84 +1,121 @@
+import "swiper/css";
+import "swiper/css/navigation";
 import { useRef, useState } from "react";
-import data from "../data.json";
-import { images } from "../../assets/images";
-import { Form } from "react-bootstrap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { images } from "../../../assets/images";
+import { UilArrowRight } from "@iconscout/react-unicons";
+import { UilArrowLeft } from "@iconscout/react-unicons";
+import SwiperButtonNext from "../../Swiper/SwiperButtonNext";
+import SwiperButtonPrev from "../../Swiper/SwiperButtonPrev";
+import { useDispatch, useSelector } from "react-redux";
+import { Actions } from "../../../store/store";
 
-const Chocolate = () => {
-  let [value, setValue] = useState(new Set([]));
-  // console.log("value =>", value);
+const ChocolateFillingType = ({ filling_type, onSelect, type_id }) => {
+  const [state, setState] = useState({});
 
-  const boxType = data.chocolate_type;
-  // console.log(boxType);
+  console.log(state);
+  const ref = useRef();
+  const { cart } = useSelector((state) => state);
+  console.log("cart =>", cart);
+  const dispatch = useDispatch();
 
-  // const checkRef = useRef("");
+  const addNewInfo = (filling) => {
+    console.log("dataFilling =>", filling);
+    cart.filling_type.find(e => {
+      if (e.id === filling.id && e.type_id === type_id) {
 
-  // const checkHandler = (data) => {
-  // const newValue = [...value];
-  // newValue.push(data);
-  // setValue(newValue);
-  // const check = {
-  //   check: checkRef.current.checked,
-  // };
-  // if (check === true) {
-  // }
-  // console.log(check);
-  // setValue(check);
-  // console.log("value =>", value);
-  // };
+        console.log("1111");
+     return   dispatch(
+          Actions.SetAddedCart({
+            ...cart,
+            filling_type: cart.filling_type.filter(e => e.id !== filling_type.id),
+          })
 
-  const selectHandler = (event, data) => {
+        );
+       
+      }
+      else {
+        console.log("2222222");
+        return dispatch(
+          Actions.SetAddedCart({
+            ...cart,
+            filling_type: [...cart.filling_type, { id: filling.id, name: filling.name, type_id: type_id, marge: {} }],
 
-    console.log('data =======>' , data)
-    if(value.has(data)) {
-      value.delete(data)
-      // setValue(value.delete(data));
-      console.log('11111111111')
-      
-    }else {
-      console.log('222222222222')
-      setValue(value.add(data));
-      // value = value.filter((item) => item !== data);
-      
-    }
-
-    console.log("value 111 =>", value);
+          })
+        );
+      }
+    })
   }
 
-  console.log("value 111 =>", value);
+
   return (
-    <div className="box-type">
-      {boxType.map((data, index) => (
-        <label
-          htmlFor={`chocalate-${index}`}
-          className="select-box"
-          key={`box-type-${index}`}
-        >
-          <div className="content">
-            <div className="box-img chocalate-img">
-              <img src={images.ovalChocolate} alt={data.title} />
-            </div>
-            <div className="num-price">
-              <h4>{data.name}</h4>
-              <div className="price-paace">
-                <p>$ {data.price}</p>
-                <span> x {data.peace} peace</span>
+    <>
+      <Swiper
+        className="mySwiper"
+        slidesPerView={2}
+        spaceBetween={0}
+        onInit={swiper => {
+          ref.current = swiper;
+        }}
+        breakpoints={{
+          576: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          992: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+          },
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 0,
+          },
+          1400: {
+            slidesPerView: 4,
+            spaceBetween: 0,
+          },
+        }}
+      >
+        {filling_type.map((filling, index) => (
+          <SwiperSlide key={`filling-type-${index}`}>
+            <div
+              onClick={() => {
+                setState(filling);
+                onSelect(filling);
+                addNewInfo(filling, type_id);
+              }}
+
+              className={`filling-type ${cart.filling_type.filter(e => e.id === filling.id).length ? "active" : ""}`}
+            >
+              <div className="tab-header">
+                <div className="tab-header_img">
+                  <img src={images.biscuitFilling} alt="" />
+                </div>
+                <div className="tab-header_title">
+                  <h4>
+                    {filling.name}
+                  </h4>
+                </div>
               </div>
             </div>
-          </div>
-          <Form.Check
-            className="checkbox-select"
-            name="group1"
-            type="checkbox"
-            aria-label="option 1"
-            value={value}
-            id={`chocalate-${index}`}
-            // ref={checkRef}
-            onChange={event => selectHandler(event, data)}
-          />
-        </label>
-      ))}
-    </div>
+          </SwiperSlide>
+        ))}
+        <SwiperButtonNext>
+          <UilArrowRight />
+        </SwiperButtonNext>
+        <SwiperButtonPrev>
+          <UilArrowLeft />
+        </SwiperButtonPrev>
+      </Swiper>
+      <button onClick={() => ref.current.slideNext()} className="slide-next">
+        <UilArrowRight />
+      </button>
+      <button onClick={() => ref.current.slidePrev()} className="slide-prev">
+        <UilArrowLeft />
+      </button>
+    </>
+
   );
 };
 
-export default Chocolate;
+export default ChocolateFillingType;

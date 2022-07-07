@@ -14,12 +14,15 @@ const initialState = {
         price: 0,
         chocolate_type: [
           {
-            id: -1
+            id: -1,
+            name: "",
           }
         ],
         filling_type: [
           {
             id: -1,
+            name: "",
+            type_id: -1,
             merge: {}
           }
         ]

@@ -9,12 +9,7 @@ import { useRef, useState } from "react";
 
 const ChocolateType = ({type}) => {
   const [state, setState] = useState({});
-  const handleClickNext = () => {
-    document.getElementById("slide-next").click();
-  };
-  const handleClickPrev = () => {
-    document.getElementById("slide-prev").click();
-  };
+
   return (
     <div className="select-filling">
       <div className="chocolate-content">
@@ -28,6 +23,7 @@ const ChocolateType = ({type}) => {
       <div className="tab-main">
         <ChocolateFillingType
           filling_type={type.filling_type}
+          type_id = {type.id}
           onSelect={(filling) => setState(filling)}
         />
         
