@@ -1,34 +1,22 @@
 import data from "../data.json";
-import { useDispatch, useSelector } from "react-redux";
 import { images } from "../../assets/images";
+import { useDispatch, useSelector } from "react-redux";
+import { Action } from "../../store/store";
 import { Form } from "react-bootstrap";
-import { Actions } from "../../store/store";
 
 const Chocolate = () => {
   const boxType = data.chocolate_type;
-
   const { cart } = useSelector((state) => state);
-  console.log("cart =>", cart);
-  const dispatch = useDispatch();
 
-  const addNewInfo = (data) => {
-    console.log("dataCho =>", data);
-    if(cart.chocolate_type.find(e => e.id === data.id)){
-      dispatch(
-        Actions.SetAddedCart({
-          ...cart,
-          chocolate_type: cart.chocolate_type.filter(e => e.id !== data.id)
-        })
-        
-      );
-    } else {
-      dispatch(
-        Actions.SetAddedCart({
-          ...cart,
-          chocolate_type: [...cart.chocolate_type, {id: data.id, name: data.name}]
-        })
-      );
-    }
+  const dispatch = useDispatch();
+  const addNewChocolate = (data) => {
+    dispatch(
+      Action.setAddedChocolate({
+        ...cart,
+        chocolate_type: [...cart.chocolate_type, {id: data.id, name: data.name}]
+      })
+    );
+    
   };
 
 
@@ -60,7 +48,7 @@ const Chocolate = () => {
             value={data.id}
             id={`chocalate-${index}`}
             checked={cart.chocolate_type.filter(e => e.id === data.id).length ? true : false}
-            onChange={() => addNewInfo(data)}
+            onChange={() => addNewChocolate(data)}
           />
         </label>
       ))}

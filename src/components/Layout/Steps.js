@@ -1,13 +1,13 @@
 import { Col, Row } from "react-bootstrap";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Steps = (props) => {
 
-  const { cart } = useSelector((state) => state);
+  // const { cart } = useSelector((state) => state);
 
   const totalAmount = () => {
-		return cart.price;
+		// return cart.price;
 	};
 
   const navigate = useNavigate();

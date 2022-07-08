@@ -1,29 +1,23 @@
 import { images } from "../../assets/images";
 import data from "../data.json";
-
-import Form from "react-bootstrap/Form";
 import { useDispatch, useSelector } from "react-redux";
-import { Actions } from "../../store/store";
+import { Action } from "../../store/store";
+import Form from "react-bootstrap/Form";
 
 const Box = () => {
   const boxType = data.box_type;
   const { cart } = useSelector((state) => state);
 
-  console.log("cart => => =>", cart);
-
   const dispatch = useDispatch();
-
-  const addNewInfo = (data) => {
-    console.log("data=", data);
+  const addNewBox = (data) => {
     dispatch(
-      Actions.SetAddedCart({
+      Action.setAddedBox({
         ...cart,
-        title: data.title,
         id: data.id,
+        title: data.title,
         price: data.price,
-        box_number: data.box_number
+        box_number: data.box_number,
       })
-      
     );
   };
 
@@ -52,7 +46,7 @@ const Box = () => {
             value={data.id}
             id={`box-${index}`}
             checked={cart.id === data.id ? true : false}
-            onChange={() => addNewInfo(data)}
+            onChange={() => addNewBox(data)}
           />
         </label>
       ))}

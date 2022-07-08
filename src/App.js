@@ -1,7 +1,3 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { persistStore } from "redux-persist";
-import { Provider } from 'react-redux';
-import { reducer } from "./store/store";
 import { Row } from "react-bootstrap";
 import "./assets/css/app.css";
 import Sidebar from "./components/Layout/Sidebar";
@@ -13,24 +9,13 @@ import GiftCardMessage from "./pages/GiftCardMessage";
 import FormInformation from "./pages/FormInformation";
 import Order from "./pages/Order";
 import AboutUs from "./pages/AboutUs";
-import { PersistGate } from "redux-persist/integration/react";
-
-const store = configureStore({
-  reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false,
-  }),
-});
-const persistor = persistStore(store);
-
+import { useSelector } from "react-redux";
 
 function App() {
-
+  const { cart } = useSelector((state) => state);
+  console.log("cart Box =>" ,cart );
   // const activeClass = (route) => { return location.pathname === route ? "active" : null }
-
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
         <BrowserRouter>
           <Sidebar />
           <div id="main-content">
@@ -47,9 +32,7 @@ function App() {
             </Row>
           </div>
         </BrowserRouter>
-      </PersistGate>
 
-    </Provider>
   );
 }
 

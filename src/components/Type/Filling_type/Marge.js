@@ -1,19 +1,16 @@
-
-const Marge = ({marge}) => {
-
+import data from "../../data.json";
+const Marge = ({ marge }) => {
+  const filling_type = data.filling_type;
+  const merge = filling_type.map(merge => merge)
   return (
     <div className="marge-with">
       <span>Marge With: </span>
-      {marge?.map(
-        (marge, i) => (
-          <div
-            className="marge-content"
-            key={`marge-${i}`}
-          >
-            <p>{marge.name}</p>
-          </div>
-        )
-      )}
+      
+      {merge.map((marge, i) => (
+        <div className="marge-content" key={`marge-${i}`}>
+          <p>{marge.name}</p>
+        </div>
+      ))}
     </div>
   );
 };
