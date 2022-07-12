@@ -25,6 +25,7 @@ const ChocolateType = ({type}) => {
       </div>
       <Marge
         marge={state.marge}
+        type_id = {type.id}
       />
     </div>
   );

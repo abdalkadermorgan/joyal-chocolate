@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { Action } from "../../../store/store";
 
-const Marge = ({ marge }) => {
+const Marge = ({ marge, type_id }) => {
   const dispatch = useDispatch();
 
   const addNewMergeType = (marge) => {
-    dispatch(Action.setAddedMerge({ marge }));
+    dispatch(Action.setAddedMerge({ marge, type_id }));
   };
 
   return (

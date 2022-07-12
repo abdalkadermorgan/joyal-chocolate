@@ -1,0 +1,191 @@
+{
+  "box_type": [
+    {
+      "id": 1,
+      "box_number": 1,
+      "title": "One Part Box",
+      "img_url": "",
+      "price": 32
+    },
+    {
+      "id": 2,
+      "box_number": 2,
+      "title": "Tow Part Box",
+      "img_url": "images.onePart",
+      "price": 44
+    },
+    {
+      "id": 3,
+      "box_number": 3,
+      "title": "Three Part Box",
+      "img_url": "images.onePart",
+      "price": 53
+    }
+  ],
+  "chocolate_type": [
+    {
+      "id": 1,
+      "name": "Oval Chocolate",
+      "price": 13,
+      "peace": 12,
+      "img_url": ""
+    },
+    {
+      "id": 2,
+      "name": "Rectangular Chocolate",
+      "price": 18,
+      "peace": 12
+    },
+    {
+      "id": 3,
+      "name": "Square Chocolate",
+      "price": 13,
+      "peace": 12,
+      "img_url": ""
+    },
+    {
+      "id": 4,
+      "name": "Circular Chocolate",
+      "price": 18,
+      "peace": 12
+    }
+  ],
+  "filling_type": [
+    {
+      "id": 1,
+      "name": "Pistachio1",
+      "price": 10,
+      "img_url": "",
+      "type_id":-1,
+      "marge": [
+        {
+          "id": 1,
+          "name": "none1",
+          "price": 0
+        },
+        {
+          "id": 2,
+          "name": "Chopped-Hazelnuts1",
+          "price": 10
+        },
+        {
+          "id": 3,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 5,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 4,
+          "name": "Biscuit1",
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Biscuit1",
+      "price": 10,
+      "img_url": "",
+      "type_id":-1,
+      "marge": [
+        {
+          "id": 1,
+          "name": "none1",
+          "price": 0
+        },
+        {
+          "id": 2,
+          "name": "Chopped-Hazelnuts1",
+          "price": 10
+        },
+        {
+          "id": 3,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 5,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 4,
+          "name": "Biscuit1",
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Cheese1",
+      "price": 15,
+      "img_url": "",
+      "type_id":-1,
+      "marge": [
+        {
+          "id": 1,
+          "name": "none1",
+          "price": 0
+        },
+        {
+          "id": 2,
+          "name": "Chopped-Hazelnuts1",
+          "price": 10
+        },
+        {
+          "id": 3,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 5,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 4,
+          "name": "Biscuit1",
+          "price": 20
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Feuilletine1",
+      "price": 20,
+      "img_url": "",
+      "type_id":-1,
+      "marge": [
+        {
+          "id": 1,
+          "name": "none1",
+          "price": 0
+        },
+        {
+          "id": 2,
+          "name": "Chopped-Hazelnuts1",
+          "price": 10
+        },
+        {
+          "id": 3,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 5,
+          "name": "Biscuit1",
+          "price": 20
+        },
+        {
+          "id": 4,
+          "name": "Biscuit1",
+          "price": 20
+        }
+      ]
+    }
+  ]
+}
