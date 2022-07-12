@@ -12,24 +12,17 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Action } from "../../../store/store";
 
-const FillingTypeCohcolate = ({ type_id }) => {
+const FillingTypeCohcolate = ({ type_id, onSelect }) => {
   const [state, setState] = useState({});
-  const filling_type = data.filling_type;
+  const filling_type_Chocolate = data.filling_type;
   const ref = useRef();
 
   const { cart } = useSelector((state) => state);
 
   const dispatch = useDispatch();
-  const addNewFillingType = (data) => {
-    dispatch(
-      Action.setAddedFilling({
-        ...cart,
-        filling_type: [
-          ...cart.filling_type,
-          { id: data.id, name: data.name, type_id: type_id },
-        ],
-      })
-    );
+
+  const addNewFillingType = (filling) => {
+    dispatch(Action.setAddedFilling({ type_id, filling }));
   };
 
   return (
@@ -60,16 +53,29 @@ const FillingTypeCohcolate = ({ type_id }) => {
           },
         }}
       >
-        {filling_type.map((data, index) => (
+        {filling_type_Chocolate.map((filling, index) => (
           <SwiperSlide key={`filling-type-${index}`}>
             <div
               onClick={() => {
-                setState(data);
-                //   onSelect(filling);
-                addNewFillingType(data);
+                setState(filling);
+                onSelect(filling);
+                addNewFillingType(filling);
+                console.log(
+                  "aa",
+                  cart.chocolate_type.map((e) => e.filling_type.type_id),
+                  "bbb",
+                  cart.chocolate_type.map((e) => e.id),
+                  "ccc",
+                  type_id
+                );
               }}
-              className={`filling-type ${
-                cart.filling_type.filter((e) => e.id === data.id).length
+              className={`filling-type 
+              ${
+                cart.chocolate_type.filter(
+                  (e) =>
+                    e.filling_type.id === filling.id &&
+                    e.filling_type.type_id === type_id
+                ).length
                   ? "active"
                   : ""
               }`}
@@ -79,7 +85,7 @@ const FillingTypeCohcolate = ({ type_id }) => {
                   <img src={images.biscuitFilling} alt="" />
                 </div>
                 <div className="tab-header_title">
-                  <h4>{data.name}</h4>
+                  <h4>{filling.name}</h4>
                 </div>
               </div>
             </div>

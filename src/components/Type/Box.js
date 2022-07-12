@@ -11,13 +11,7 @@ const Box = () => {
   const dispatch = useDispatch();
   const addNewBox = (data) => {
     dispatch(
-      Action.setAddedBox({
-        ...cart,
-        id: data.id,
-        title: data.title,
-        price: data.price,
-        box_number: data.box_number,
-      })
+      Action.setAddedBox(data)
     );
   };
 

@@ -56,6 +56,7 @@
       "name": "Pistachio1",
       "price": 10,
       "img_url": "",
+      "type_id":-1,
       "marge": [
         {
           "id": 1,
@@ -89,6 +90,7 @@
       "name": "Biscuit1",
       "price": 10,
       "img_url": "",
+      "type_id":-1,
       "marge": [
         {
           "id": 1,
@@ -122,6 +124,7 @@
       "name": "Cheese1",
       "price": 15,
       "img_url": "",
+      "type_id":-1,
       "marge": [
         {
           "id": 1,
@@ -155,6 +158,7 @@
       "name": "Feuilletine1",
       "price": 20,
       "img_url": "",
+      "type_id":-1,
       "marge": [
         {
           "id": 1,

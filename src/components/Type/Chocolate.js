@@ -9,12 +9,10 @@ const Chocolate = () => {
   const { cart } = useSelector((state) => state);
 
   const dispatch = useDispatch();
+
   const addNewChocolate = (data) => {
     dispatch(
-      Action.setAddedChocolate({
-        ...cart,
-        chocolate_type: [...cart.chocolate_type, {id: data.id, name: data.name}]
-      })
+      Action.setAddedChocolate(data)      
     );
     
   };

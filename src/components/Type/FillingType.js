@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import "swiper/css";
 import "swiper/css/navigation";
-import data from "../data.json";
 import ChocolateType from "./Filling_type/ChocolateType";
 
 const FillingType = () => {
