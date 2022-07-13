@@ -23,7 +23,8 @@ const Chocolate = () => {
       {boxType.map((data, index) => (
         <label
           htmlFor={`chocalate-${index}`}
-          className="select-box"
+          className={`select-box ${cart.chocolate_type.filter(e => e.id === data.id).length ? 'active' : ''}`}
+
           key={`box-type-${index}`}
         >
           <div className="content">

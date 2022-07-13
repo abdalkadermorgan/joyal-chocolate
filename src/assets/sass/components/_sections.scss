@@ -28,10 +28,11 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #d3dad6;
-    margin-bottom: 10px;
+    margin-bottom: 0;
     padding: 20px 15px;
+    &.active {background-color: #FEF7ED;}
     @media (max-width: 992px) {
-      margin-bottom: 5px;
+      margin-bottom: 0;
       padding: 15px 15px;
     }
     &:last-child {
@@ -317,6 +318,11 @@
         margin: 0;
         margin-right: 20px;
         cursor: pointer;
+      }
+      &.active {
+        p {
+          color: $white;
+        }
       }
     }
   

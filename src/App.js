@@ -14,11 +14,11 @@ import { useSelector } from "react-redux";
 function App() {
   const { cart } = useSelector((state) => state);
   console.log("cart Box =>" ,cart );
-  if(cart.id === undefined || cart.id === null) {
-    console.log("error");
-  }else {
-    console.log("current");
-  }
+  // if(cart.id === undefined || cart.id === null) {
+  //   console.log("error");
+  // }else {
+  //   console.log("current");
+  // }
   // const activeClass = (route) => { return location.pathname === route ? "active" : null }
 
 

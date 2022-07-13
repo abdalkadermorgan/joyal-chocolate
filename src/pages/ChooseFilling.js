@@ -9,21 +9,31 @@ const ChooseFilling = (props) => {
   const { cart } = useSelector((state) => state);
 
   const totalAmount = () => {
-    const priceFillingType = cart.chocolate_type.map(e => e.filling_type.price)
-    const totalAmountFilling = priceFillingType.reduce((total, item) => {
-      return total + item
-    })
-
-    const priceMerge = cart.chocolate_type.map(e => e.filling_type.merge.price)
-    const totalAmountMerge = priceMerge.reduce((total, item) => {
-      return total + item
-    })
-
-    const totalAmountChocolate = 
-    cart.chocolate_type.reduce((total, item) => {
-      return total + item.price
-    }, 0)
-    return cart.price + totalAmountChocolate + totalAmountFilling + totalAmountMerge;
+    if(cart.chocolate_type.map(e => e.filling_type.id === -1)){
+      console.log("und");
+      const totalAmountChocolate = 
+      cart.chocolate_type.reduce((total, item) => {
+        return total + item.price
+      }, 0)
+      return cart.price + totalAmountChocolate;
+    } else {
+      console.log("ex");
+      const priceFillingType = cart.chocolate_type.map(e => e.filling_type.price)
+      const totalAmountFilling = priceFillingType.reduce((total, item) => {
+        return total + item
+      })
+  
+      const priceMerge = cart.chocolate_type.map(e => e.filling_type.merge.price)
+      const totalAmountMerge = priceMerge.reduce((total, item) => {
+        return total + item
+      })
+  
+      const totalAmountChocolate = 
+      cart.chocolate_type.reduce((total, item) => {
+        return total + item.price
+      }, 0)
+      return cart.price + totalAmountChocolate + totalAmountFilling + totalAmountMerge;
+    }
   }
   return (
     <Fragment>

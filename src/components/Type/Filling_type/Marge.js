@@ -1,7 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Action } from "../../../store/store";
 
+
 const Marge = ({ marge, type_id }) => {
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   const addNewMergeType = (marge) => {
@@ -14,7 +16,17 @@ const Marge = ({ marge, type_id }) => {
 
       {marge?.map((marge, i) => (
         <div
-          className="marge-content"
+          // className="marge-content"
+          className={`marge-content 
+              ${
+                cart.chocolate_type.filter(
+                  (e) =>
+                    e.id === type_id &&
+                    e.filling_type.merge.id === marge.id
+                ).length
+                  ? "active"
+                  : ""
+              }`}
           key={`marge-${i}`}
           onClick={() => {
             addNewMergeType(marge);
