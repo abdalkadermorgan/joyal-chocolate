@@ -9,7 +9,7 @@ const FillingType = () => {
   const { cart } = useSelector((state) => state);
 
   return (
-    <div className="border-section">
+    <div className="border-section box-type">
       {cart.chocolate_type.map((type, i) => (
         <ChocolateType
           type={type}

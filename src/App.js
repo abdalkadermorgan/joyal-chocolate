@@ -10,15 +10,11 @@ import FormInformation from "./pages/FormInformation";
 import Order from "./pages/Order";
 import AboutUs from "./pages/AboutUs";
 import { useSelector } from "react-redux";
+// import ToastMessage from "./components/Layout/ToastMessage";
 
 function App() {
   const { cart } = useSelector((state) => state);
-  console.log("cart Box =>" ,cart );
-  // if(cart.id === undefined || cart.id === null) {
-  //   console.log("error");
-  // }else {
-  //   console.log("current");
-  // }
+  console.log("cart store =>" ,cart );
   // const activeClass = (route) => { return location.pathname === route ? "active" : null }
 
 

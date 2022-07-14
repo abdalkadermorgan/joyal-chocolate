@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 // import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-const Steps = (props) => {
+const Steps = ({onClick, ...props}) => {
 
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    navigate(props.next)
-  }
+  // const handleNext = () => {
+  //   navigate(props.next)
+  // }
   const handlePrev = () => {
     navigate(props.prev);
   }
@@ -27,7 +27,7 @@ const Steps = (props) => {
           </div>
         </Col>
         <Col sm={2} xs={3}>
-          <button onClick={handleNext} className="btn btn-step-next">Next Step</button>
+          <button onClick={onClick} className="btn btn-step-next">Next Step</button>
         </Col>
       </Row>
     </div>

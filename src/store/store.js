@@ -1,6 +1,5 @@
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import data from "../components/data.json";
 export const actionTypes = {
   setAddedBox: "[setAddedBox] Action",
   setAddedChocolate: "[{setAddedChocolate}] Action",
@@ -77,19 +76,7 @@ export const reducer = persistReducer(
               },
             ],
           };
-          // const AmountWithChcolate = state.cart.chocolate_type.reduce((total, item)=> {
-          //   return total + item.price
-          // }, 0);
-          // state.totalAmount = state.totalAmount + AmountWithChcolate;
-          // const amountWithChcolate = state.cart.chocolate_type.map((e) => {
-          //   let q = 0
-          //  return  q = q + e.price
-          // } )
-          // console.log("!existingItem",amountWithChcolate );
         } else {
-          // const amountDelChocolate = state.cart.chocolate_type.map((e) => e.price )
-          // console.log("existingItem", amountDelChocolate);
-          // state.totalAmount = state.totalAmount - amountDelChocolate;
           const test = state.cart.chocolate_type.filter(
             (e) => e.id !== dataChocolateType.id
           );
@@ -101,39 +88,10 @@ export const reducer = persistReducer(
         if (TypeBox === 1 && state.cart.chocolate_type.length > 1) {
           state.cart.chocolate_type.shift();
         } else if (TypeBox === 2 && state.cart.chocolate_type.length > 2) {
-          // const a = state.cart.chocolate_type.map(e => e)
-          // state.totalAmount = state.totalAmount - a[0].price;
-          // console.log("type a", a[0].price);
           state.cart.chocolate_type.shift();
         } else if (TypeBox === 3 && state.cart.chocolate_type.length > 3) {
           state.cart.chocolate_type.shift();
         }
-        // state.totalAmount = state.cart.chocolate_type.map(e => parseInt(state.totalAmount) + parseInt(e.price))
-        // const s = state.cart.chocolate_type.reducer((total, item) => {
-        //   return total + item.price;
-        // })
-        // const s = state.cart.chocolate_type.reduce((total, item) => {
-        //   return total + item.price;
-        // }, 0)
-
-        // const s = state.cart.chocolate_type.map((e) => {
-        //   let sum = 0;
-        //   return sum= sum + e.price
-        // })
-        // console.log("s", s);
-
-        // state.totalAmount = state.totalAmount + s;
-
-        // console.log("sum =>", state.totalAmount);
-        // state.cart.chocolate_type.reduce((total, item) => {
-        //   return state.totalAmount = total + item.price;
-        // }, state.totalAmount)
-        // console.log("ttt", state.totalAmount);
-        // state.cart.chocolate_type.forEach(element => {
-        //   state.totalAmount +=  element.price
-        // });
-        // console.log("sum =>", state.totalAmount);
-        // state.totalAmount = sum;
         return { ...state };
       }
 

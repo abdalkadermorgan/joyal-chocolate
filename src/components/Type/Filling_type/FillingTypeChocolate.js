@@ -29,21 +29,29 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
     <>
       <Swiper
         className="mySwiper"
-        slidesPerView={2}
+        slidesPerView={1}
         spaceBetween={0}
         onInit={(swiper) => {
           ref.current = swiper;
         }}
         breakpoints={{
-          576: {
+          420: {
             slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          576: {
+            slidesPerView: 3,
             spaceBetween: 0,
           },
           992: {
             slidesPerView: 3,
             spaceBetween: 0,
           },
-          1200: {
+          1110: {
+            slidesPerView: 2,
+            spaceBetween: 0,
+          },
+          1250: {
             slidesPerView: 3,
             spaceBetween: 0,
           },
@@ -90,7 +98,7 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
           <UilArrowLeft />
         </SwiperButtonPrev>
       </Swiper>
-      <button onClick={() => ref.current.slideNext()} className="slide-next">
+      <button onClick={() => ref.current.slideNext()} className="slide-next ">
         <UilArrowRight />
       </button>
       <button onClick={() => ref.current.slidePrev()} className="slide-prev">

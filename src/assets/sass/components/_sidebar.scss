@@ -1,7 +1,7 @@
 .sidebar {
   position: fixed;
   height: 100%;
-  width: 200px;
+  width: 150px;
   z-index: 1001;
   padding: 0;
   @media (max-width: 768px) {
@@ -14,7 +14,7 @@
 }
 
 .main-sidebar {
-  padding: 40px 30px;
+  padding: 40px 0;
   height: 100%;
   @media (max-width: 768px) {
     & {
@@ -75,6 +75,7 @@
           & {
             width: auto;
             margin: 0 8px;
+            text-align: center;
           }
         }
         &:last-child {
@@ -125,7 +126,7 @@
       height: 100%;
       position: absolute;
       background: $primary;
-      right: 27px;
+      right: -2px;
       top: 0;
       @media (max-width: 768px) {
         & {

@@ -1,10 +1,16 @@
 import { Fragment } from "react";
 import { Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import CardMessage from "../components/Form/CardMessage";
 import SelectTitle from "../components/Layout/SelectTitle";
 import Steps from "../components/Layout/Steps";
 
 const GiftCardMessage = (props) => {
+
+  let navigate = useNavigate();
+  const nextStep = () => {
+      navigate('/form-information');
+  }
   return (
     <Fragment>
       <Col lg={5}>
@@ -13,7 +19,7 @@ const GiftCardMessage = (props) => {
       <Col lg={7}>
         <CardMessage />
       </Col>
-      <Steps next={'/form-information'} prev={'/choose-filling'} />
+      <Steps onClick={nextStep} prev={'/choose-filling'} />
     </Fragment>
   );
 };
