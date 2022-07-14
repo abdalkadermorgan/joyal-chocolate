@@ -8,7 +8,7 @@ import Steps from "../components/Layout/Steps";
 const FormInformation = (props) => {
   let navigate = useNavigate();
   const nextStep = () => {
-      navigate('/order-number');
+      // navigate('/order-number');
   }
   return (
     <Fragment>
@@ -18,7 +18,7 @@ const FormInformation = (props) => {
       <Col lg={7}>
         <Information />
       </Col>
-      <Steps onClick={nextStep} prev={'/card-message'} />
+      <Steps onClick={nextStep} prev={'/card-message'} type={'submit'} nextTitle={'Finish'} />
     </Fragment>
   );
 };

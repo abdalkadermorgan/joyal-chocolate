@@ -1,137 +1,165 @@
-// import "swiper/css";
-// import "swiper/css/navigation";
-// import { useRef, useState } from "react";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import { images } from "../../../assets/images";
-// import { UilArrowRight } from "@iconscout/react-unicons";
-// import { UilArrowLeft } from "@iconscout/react-unicons";
-// import SwiperButtonNext from "../../Swiper/SwiperButtonNext";
-// import SwiperButtonPrev from "../../Swiper/SwiperButtonPrev";
-// import { useDispatch, useSelector } from "react-redux";
-// import { Actions } from "../../../store/store";
+// import { Button } from "bootstrap";
+import { useState } from "react";
+import { Col, Form, Row, Button } from "react-bootstrap";
 
-// const ChocolateFillingType = ({ filling_type, onSelect, type_id }) => {
-//   // const [state, setState] = useState({});
+const Information = () => {
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
 
-//   // console.log(state);
-//   const ref = useRef();
-//   const { cart } = useSelector((state) => state);
-//   console.log("cart =>", cart);
-//   const dispatch = useDispatch();
+  const setField = (field, value) => {
+    setForm({
+      ...form,
+      [field]: value,
+    });
 
-//   // const addNewInfo = (filling) => {
-//   //   console.log("dataFilling =>", filling);
-//   //   if(cart.filling_type.find(e => e.id === filling.id)){
-//   //     dispatch(
-//   //       Actions.SetAddedCart({
-//   //         ...cart,
-//   //         filling_type: cart.filling_type.filter(e => e.id !== filling.id),
-//   //       })
-//   //       );
-//   //   } else {
-//   //     dispatch(
-//   //       Actions.SetAddedCart({
-//   //         ...cart,
-//   //         filling_type: [...cart.filling_type, {id: filling.id, name: filling.name}]
-//   //       })
-//   //     );
-//   //   }
-//   // }
+    if (!!errors[field])
+      setErrors({
+        ...errors,
+        [field]: null,
+      });
+  };
 
-//   const addNewInfo = (filling) => {
-//     // console.log("dataFilling =>", filling);
-//     // cart.filling_type.filter(e => {
-//     //    if (e.type_id === type_id) {
-//     //     console.log("1111");
-//     //     return dispatch(
-//     //       Actions.SetAddedCart({
-//     //         ...cart,
-//     //         filling_type: cart.filling_type.filter(e => e.type_id !== type_id),
-//     //       })
-//     //     );
-//     //   } else {
-//     //     console.log("2222222");
-//     //     return dispatch(
-//     //       Actions.SetAddedCart({
-//     //         ...cart,
-//     //         filling_type: [...cart.filling_type,{ id: filling.id, name: filling.name, type_id: type_id, marge: {} }],
-//     //       })
-//     //     );
-//     //   }
-//     // })
+
+  const validateForm = () => {
+    const {full_name, phone_number, email, country, city, address} = form;
+    const newErrors = {}
+
+    if(!full_name || full_name === '') {
+        newErrors.full_name = 'please enter your Full name'
+    } else if (!phone_number || phone_number === '') {
+        newErrors.phone_number = 'please enter your Phone Number'
+    } else if (!email || email === '' || email.includes('@')) {
+        newErrors.email = 'please enter your E-maill'
+    } else if (!address || address === '') {
+        newErrors.email = 'please enter your Address'
+    } else if (country === 'Select Your Country') {
+        newErrors.country = 'please select your country'
+    }else if (city === 'Select Your City') {
+        newErrors.city = 'please select your city'
+    }
     
 
-//   }
+    return newErrors;
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
+    const formErrors = validateForm();
+    if(Object.keys(formErrors).length > 0) {
+        setErrors(formErrors)
+    } else {
+        console.log("submit");
+    }
+    // const form = event.currentTarget;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    console.log("form", form);
+    }
 
-//   return (
-//     <>
-//       <Swiper
-//         className="mySwiper"
-//         slidesPerView={2}
-//         spaceBetween={0}
-//         onInit={swiper => {
-//           ref.current = swiper;
-//         }}
-//         breakpoints={{
-//           576: {
-//             slidesPerView: 2,
-//             spaceBetween: 0,
-//           },
-//           992: {
-//             slidesPerView: 3,
-//             spaceBetween: 0,
-//           },
-//           1200: {
-//             slidesPerView: 3,
-//             spaceBetween: 0,
-//           },
-//           1400: {
-//             slidesPerView: 4,
-//             spaceBetween: 0,
-//           },
-//         }}
-//       >
-//         {filling_type.map((filling, index) => (
-//           <SwiperSlide key={`filling-type-${index}`}>
-//             <div
-//               onClick={() => {
-//                 // setState(filling);
-//                 onSelect(filling);
-//                 addNewInfo(filling);
-//               }}
+    // setValidated(true);
+//   };
 
-//               className={`filling-type ${cart.filling_type.find(e => e.id === filling.id && e.type_id === type_id) ? "active" : ""}`}
-//             >
-//               <div className="tab-header">
-//                 <div className="tab-header_img">
-//                   <img src={images.biscuitFilling} alt="" />
-//                 </div>
-//                 <div className="tab-header_title">
-//                   <h4>
-//                     {filling.name}
-//                   </h4>
-//                 </div>
-//               </div>
-//             </div>
-//           </SwiperSlide>
-//         ))}
-//         <SwiperButtonNext>
-//           <UilArrowRight />
-//         </SwiperButtonNext>
-//         <SwiperButtonPrev>
-//           <UilArrowLeft />
-//         </SwiperButtonPrev>
-//       </Swiper>
-//       <button onClick={() => ref.current.slideNext()} className="slide-next">
-//         <UilArrowRight />
-//       </button>
-//       <button onClick={() => ref.current.slidePrev()} className="slide-prev">
-//         <UilArrowLeft />
-//       </button>
-//     </>
+  return (
+    <div className="border-section form-information">
+      <Form noValidate onSubmit={handleSubmit}>
+        <Row>
+          <Col lg={12}>
+            <Form.Group className="mb-3" controlId="validationCustom01">
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                value={form?.full_name}
+                onChange={(e) => setField("full_name", e.target.value)}
+                isInvalid={!!errors.full_name}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.full_name}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+          <Col lg={6}>
+            <Form.Group className="mb-3" controlId="validationCustom02">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                type="tel"
+                required
+                value={form?.phone_number}
+                onChange={(e) => setField("phone_number", e.target.value)}
+                isInvalid={!!errors.phone_number}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.phone_number}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+          <Col lg={6}>
+            <Form.Group className="mb-3" controlId="validationCustom03">
+              <Form.Label>e-Mail Address</Form.Label>
+              <Form.Control
+                type="email"
+                required
+                value={form?.email}
+                onChange={(e) => setField("email", e.target.value)}
+                isInvalid={!!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors?.email}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+          <Col lg={6}>
+            <Form.Group className="mb-3 " controlId="validationCustom04">
+              <Form.Label>Country</Form.Label>
+              <Form.Select
+                aria-label="Default select example"
+                required
+                value={form?.country}
+                onChange={(e) => setField("country", e.target.value)}
+              >
+                <option>Select Your Country</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col lg={6}>
+            <Form.Group className="mb-3" controlId="validationCustom05">
+              <Form.Label>City</Form.Label>
+              <Form.Select
+                aria-label="Default select example"
+                required
+                value={form?.city}
+                onChange={(e) => setField("city", e.target.value)}
+                
+              >
+                <option>Select Your City</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col lg={12}>
+            <Form.Group controlId="validationCustom06">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                required
+                value={form?.address}
+                onChange={(e) => setField("address", e.target.value)}
+                isInvalid={!!errors.address}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Button type="submit">Submit form</Button>
+      </Form>
+    </div>
+  );
+};
 
-//   );
-// };
-
-// export default ChocolateFillingType;
+export default Information;

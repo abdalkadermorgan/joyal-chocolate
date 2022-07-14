@@ -41,7 +41,7 @@ const ChooseYourBox = () => {
       <Col lg={7}>
         <Box />
       </Col>
-      <Steps onClick={nextStep} next={nextStep} prev={'/'} totalAmount={totalAmount}/>
+      <Steps onClick={nextStep} next={nextStep} prev={'/'} totalAmount={totalAmount}  nextTitle={'Next Step'} disabled={'disabled'}/>
     </Fragment>
   );
 };

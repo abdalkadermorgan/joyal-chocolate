@@ -18,7 +18,7 @@ const Steps = ({onClick, ...props}) => {
     <div className="steps">
       <Row className="justify-content-center">
         <Col sm={2} xs={3}>
-          <button onClick={handlePrev} className="btn btn-step-prev">Prev Step</button>
+          <button onClick={handlePrev} className="btn btn-step-prev" disabled={props.disabled}>Prev Step</button>
         </Col>
         <Col sm={4} xs={6}>
           <div className="total-amount">
@@ -27,7 +27,7 @@ const Steps = ({onClick, ...props}) => {
           </div>
         </Col>
         <Col sm={2} xs={3}>
-          <button onClick={onClick} className="btn btn-step-next">Next Step</button>
+          <button onClick={onClick} className="btn btn-step-next" type={props.type}>{props.nextTitle}</button>
         </Col>
       </Row>
     </div>

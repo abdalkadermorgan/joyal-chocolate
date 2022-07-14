@@ -10,7 +10,7 @@
 .box-type {
   display: flex;
   flex-direction: column;
-  border-left: 1.8px solid #F9CB87;
+  border-left: 1.8px solid #f9cb87;
   padding-left: 50px;
 
   @media (min-width: 991px) {
@@ -205,7 +205,11 @@
   border-bottom: 3px solid $secondary;
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
-  @media(min-width:991px) {&{margin-right: 10px;}}
+  @media (min-width: 991px) {
+    & {
+      margin-right: 10px;
+    }
+  }
   @media (max-width: 576px) {
     & {
       margin-top: 40px;
@@ -614,12 +618,11 @@
 }
 
 .custom-scroll {
-
   @media (min-width: 991px) {
     & {
       height: 530px;
       position: relative;
-      overflow-y: auto; 
+      overflow-y: auto;
     }
     &::-webkit-scrollbar {
       width: 10px;
@@ -633,4 +636,19 @@
       border-radius: 10px;
     }
   }
+}
+
+.invalid label {
+  color: #aa0b20;
+}
+.invalid p {
+  color: #aa0b20;
+  font-size: 0.9rem;
+  margin: 0;
+  margin-top: 4px;
+  margin-left: 18px;
+}
+
+.invalid input {
+  border: 1px solid #aa0b20;
 }
