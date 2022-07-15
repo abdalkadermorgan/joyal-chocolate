@@ -7,19 +7,10 @@ import Steps from "../components/Layout/Steps";
 import ToastMessage from "../components/Layout/ToastMessage";
 import Chocolate from "../components/Type/Chocolate";
 
-const ChooseChocolate = (props) => {
+const ChooseChocolate = () => {
   const [showToast, setShowToast] = useState(false);
   const { cart, totalAmount } = useSelector((state) => state);
 
-  // const totalAmount = () => {
-  //   const totalAmountChocolate = 
-  //   cart.chocolate_type.reduce((total, item) => {
-  //     return total + item.price
-  //   }, 0)
-  //   return cart.price + totalAmountChocolate;
-  // }
-
-  	
   let navigate = useNavigate();
   
   const nextStep = () => {

@@ -5,6 +5,7 @@ export const actionTypes = {
   setAddedChocolate: "[{setAddedChocolate}] Action",
   setAddedFilling: "[setAddedFilling] Action",
   setAddedMerge: "[setAddedMerge] Action",
+  setAddForm: "[setAddForm] Action",
 };
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
     // ],
   },
   totalAmount: parseInt(0),
+  formInformation: {}
 };
 
 export const reducer = persistReducer(
@@ -34,7 +36,7 @@ export const reducer = persistReducer(
     storage,
     key: "root",
     debug: true,
-    whitelist: ["cart", "totalAmount"],
+    whitelist: ["cart", "totalAmount", "formInformation"],
   },
   (state = initialState, action) => {
     switch (action.type) {
@@ -201,6 +203,12 @@ export const reducer = persistReducer(
         return { ...state };
       }
 
+      case actionTypes.setAddForm: {
+        const form = action.payload.form;
+        state.formInformation = form
+        return {...state };
+      }
+
 
       default:
         return state;
@@ -234,6 +242,12 @@ export const Action = {
     return {
       type: actionTypes.setAddedMerge,
       payload: { marge, type_id },
+    };
+  },
+  setAddForm: (form) => {
+    return {
+      type: actionTypes.setAddForm,
+      payload: { form },
     };
   },
 

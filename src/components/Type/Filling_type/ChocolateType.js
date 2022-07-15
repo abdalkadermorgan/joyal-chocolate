@@ -5,7 +5,7 @@ import Marge from "./Marge";
 import { useState } from "react";
 import FillingTypeCohcolate from "./FillingTypeChocolate";
 
-const ChocolateType = ({type}) => {
+const ChocolateType = ({ type }) => {
   const [state, setState] = useState({});
   return (
     <div className="select-filling">
@@ -13,20 +13,15 @@ const ChocolateType = ({type}) => {
         <div className="chocolate-img">
           <img src={images.ovalChocolate} alt="" />
         </div>
-        <h4>
-          {type.name}
-        </h4>
+        <h4>{type.name}</h4>
       </div>
       <div className="tab-main">
-        <FillingTypeCohcolate 
-        onSelect={(filling) => setState(filling)}
-        type_id = {type.id}
+        <FillingTypeCohcolate
+          onSelect={(filling) => setState(filling)}
+          type_id={type.id}
         />
       </div>
-      <Marge
-        marge={state.marge}
-        type_id = {type.id}
-      />
+      <Marge marge={state.marge} type_id={type.id} />
     </div>
   );
 };

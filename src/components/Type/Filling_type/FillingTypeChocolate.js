@@ -13,7 +13,6 @@ import { useDispatch } from "react-redux";
 import { Action } from "../../../store/store";
 
 const FillingTypeCohcolate = ({ type_id, onSelect }) => {
-  // const [state, setState] = useState({});
   const filling_type_Chocolate = data.filling_type;
   const ref = useRef();
 
@@ -65,7 +64,6 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
           <SwiperSlide key={`filling-type-${index}`}>
             <div
               onClick={() => {
-                // setState(filling);
                 onSelect(filling);
                 addNewFillingType(filling);
               }}

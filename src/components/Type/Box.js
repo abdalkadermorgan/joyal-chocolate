@@ -10,9 +10,7 @@ const Box = () => {
 
   const dispatch = useDispatch();
   const addNewBox = (data) => {
-    dispatch(
-      Action.setAddedBox(data)
-    );
+    dispatch(Action.setAddedBox(data));
   };
 
   return (
@@ -20,8 +18,7 @@ const Box = () => {
       {boxType.map((data, index) => (
         <label
           htmlFor={`box-${index}`}
-          // className="select-box"
-          className={`select-box ${cart.id === data.id ? 'active' : ''}`}
+          className={`select-box ${cart.id === data.id ? "active" : ""}`}
           key={`box-type-${index}`}
         >
           <div className="content">

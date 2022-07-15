@@ -11,20 +11,19 @@ const Chocolate = () => {
   const dispatch = useDispatch();
 
   const addNewChocolate = (data) => {
-    dispatch(
-      Action.setAddedChocolate(data)      
-    );
-    
+    dispatch(Action.setAddedChocolate(data));
   };
-
 
   return (
     <div className="box-type">
       {boxType.map((data, index) => (
         <label
           htmlFor={`chocalate-${index}`}
-          className={`select-box ${cart.chocolate_type.filter(e => e.id === data.id).length ? 'active' : ''}`}
-
+          className={`select-box ${
+            cart.chocolate_type.filter((e) => e.id === data.id).length
+              ? "active"
+              : ""
+          }`}
           key={`box-type-${index}`}
         >
           <div className="content">
@@ -46,7 +45,11 @@ const Chocolate = () => {
             aria-label="option 1"
             value={data.id}
             id={`chocalate-${index}`}
-            checked={cart.chocolate_type.filter(e => e.id === data.id).length ? true : false}
+            checked={
+              cart.chocolate_type.filter((e) => e.id === data.id).length
+                ? true
+                : false
+            }
             onChange={() => addNewChocolate(data)}
           />
         </label>

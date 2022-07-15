@@ -7,14 +7,15 @@ import Steps from "../components/Layout/Steps";
 import ToastMessage from "../components/Layout/ToastMessage";
 import FillingType from "../components/Type/FillingType";
 
-const ChooseFilling = (props) => {
+const ChooseFilling = () => {
   const [showToast, setShowToast] = useState(false);
   const { cart, totalAmount } = useSelector((state) => state);
   let navigate = useNavigate();
   const nextStep = () => {
     if (
       cart.chocolate_type.find((e) => e.filling_type.id === -1) ||
-      cart.chocolate_type.find((e) => e.filling_type.merge.id === undefined)
+      cart.chocolate_type.find((e) => e.filling_type.merge.id === undefined) ||
+      cart.chocolate_type.find((e) => e.filling_type.merge.id === -1)
     ) {
       setShowToast(true);
     } else {
@@ -22,40 +23,6 @@ const ChooseFilling = (props) => {
     }
   };
 
-  // const totalAmount2 = () => {
-  //   if (cart.chocolate_type.map((e) => e.filling_type.id === -1)) {
-  //     console.log("und");
-  //     const totalAmountChocolate = cart.chocolate_type.reduce((total, item) => {
-  //       return total + item.price;
-  //     }, 0);
-  //     return cart.price + totalAmountChocolate;
-  //   } else {
-  //     console.log("ex");
-  //     const priceFillingType = cart.chocolate_type.map(
-  //       (e) => e.filling_type.price
-  //     );
-  //     const totalAmountFilling = priceFillingType.reduce((total, item) => {
-  //       return total + item;
-  //     });
-
-  //     const priceMerge = cart.chocolate_type.map(
-  //       (e) => e.filling_type.merge.price
-  //     );
-  //     const totalAmountMerge = priceMerge.reduce((total, item) => {
-  //       return total + item;
-  //     });
-
-  //     const totalAmountChocolate = cart.chocolate_type.reduce((total, item) => {
-  //       return total + item.price;
-  //     }, 0);
-  //     return (
-  //       cart.price +
-  //       totalAmountChocolate +
-  //       totalAmountFilling +
-  //       totalAmountMerge
-  //     );
-  //   }
-  // };
   return (
     <Fragment>
       <ToastMessage
@@ -73,7 +40,7 @@ const ChooseFilling = (props) => {
         onClick={nextStep}
         prev={"/choose-chocolate"}
         totalAmount={totalAmount}
-        nextTitle={'Next Step'}
+        nextTitle={"Next Step"}
       />
     </Fragment>
   );

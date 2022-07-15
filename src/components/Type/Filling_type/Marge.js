@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Action } from "../../../store/store";
 
-
 const Marge = ({ marge, type_id }) => {
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -21,8 +20,7 @@ const Marge = ({ marge, type_id }) => {
               ${
                 cart.chocolate_type.filter(
                   (e) =>
-                    e.id === type_id &&
-                    e.filling_type.merge.id === marge.id
+                    e.id === type_id && e.filling_type.merge.id === marge.id
                 ).length
                   ? "active"
                   : ""

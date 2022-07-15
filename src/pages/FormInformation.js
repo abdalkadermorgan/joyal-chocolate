@@ -1,26 +1,20 @@
 import { Fragment, useRef, useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-// import Information from "../components/Form/Information";
 import SelectTitle from "../components/Layout/SelectTitle";
 import Steps from "../components/Layout/Steps";
 import { Action } from "../store/store";
 
-
 const isEmpty = (value) => value.trim() === "";
-const isEmail = (value) => value.includes('@');
+const isEmail = (value) => value.includes("@");
 
-const FormInformation = (props) => {
-  const initialState  = useSelector((state) => state);
-  console.log('initialState', initialState);
-  const { totalAmount } = useSelector((state) => state);
-  const [form, setForm] = useState({});
-
+const FormInformation = () => {
+  const { totalAmount, formInformation } = useSelector((state) => state);
   const dispatch = useDispatch();
+
   let navigate = useNavigate();
 
-  console.log("form => ", form);
   const [formInputValid, setFormInputValid] = useState({
     name: true,
     phone: true,
@@ -74,19 +68,20 @@ const FormInformation = (props) => {
     if (!formIsValid) {
       return;
     } else {
-      setForm({
+      const form = {
         enterdName,
         enterdPhone,
         enterdEmail,
         enterdCounty,
         enterdCity,
         enterdAddress,
-      });
+      };
+
+      dispatch(Action.setAddForm(form));
       setTimeout(() => {
         navigate("/order-number");
         localStorage.clear();
-        // dispatch(initialState)
-      }, 100);
+      }, 200);
     }
   };
 
@@ -100,8 +95,6 @@ const FormInformation = (props) => {
     formInputValid.address ? "" : "invalid"
   }`;
 
- 
-
   return (
     <Fragment>
       <Col lg={5}>
@@ -109,94 +102,92 @@ const FormInformation = (props) => {
       </Col>
       <Col lg={7}>
         <div className="form-information">
-          {/* <Form onSubmit={handleSubmit}> */}
-            <Row>
-              <Col lg={12}>
-                <Form.Group className={nameControlClasses}>
-                  <Form.Label>Full Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    ref={nameInputRef}
-                    onChange={() =>
-                      setFormInputValid({ ...formInputValid, name: true })
-                    }
-                  />
-                  {!formInputValid.name && <p>Please enter a valid name!</p>}
-                </Form.Group>
-              </Col>
-              <Col lg={6}>
-                <Form.Group className={phoneControlClasses}>
-                  <Form.Label>Phone Number</Form.Label>
-                  <Form.Control
-                    type="text"
-                    ref={phoneInputRef}
-                    onChange={() =>
-                      setFormInputValid({ ...formInputValid, phone: true })
-                    }
-                  />
-                  {!formInputValid.phone && (
-                    <p>Please enter a valid Phone Number!</p>
-                  )}
-                </Form.Group>
-              </Col>
-              <Col lg={6}>
-                <Form.Group className={emailControlClasses}>
-                  <Form.Label>e-Mail Address</Form.Label>
-                  <Form.Control
-                    type="email"
-                    ref={emailInputRef}
-                    onChange={() =>
-                      setFormInputValid({ ...formInputValid, email: true })
-                    }
-                  />
-                  {!formInputValid.email && <p>Please enter a valid Email!</p>}
-                </Form.Group>
-              </Col>
-              <Col lg={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>Country</Form.Label>
-                  <Form.Select
-                    aria-label="Default select example"
-                    ref={countryInputRef}
-                  >
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-              <Col lg={6}>
-                <Form.Group className="mb-3">
-                  <Form.Label>City</Form.Label>
-                  <Form.Select
-                    aria-label="Default select example"
-                    ref={cityInputRef}
-                  >
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
-                </Form.Group>
-              </Col>
-              <Col lg={12}>
-                <Form.Group className={addressControlClasses}>
-                  <Form.Label>Address</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    rows={3}
-                    ref={addressInputRef}
-                    onChange={() =>
-                      setFormInputValid({ ...formInputValid, address: true })
-                    }
-                  />
-                  {!formInputValid.address && (
-                    <p>Please enter a valid Address!</p>
-                  )}
-                </Form.Group>
-              </Col>
-            </Row>
-            {/* <Button type="submit">Submit form</Button> */}
-          {/* </Form> */}
+          <Row>
+            <Col lg={12}>
+              <Form.Group className={nameControlClasses}>
+                <Form.Label>Full Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  ref={nameInputRef}
+                  onChange={() =>
+                    setFormInputValid({ ...formInputValid, name: true })
+                  }
+                />
+                {!formInputValid.name && <p>Please enter a valid name!</p>}
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group className={phoneControlClasses}>
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control
+                  type="number"
+                  pattern="[0-9]*"
+                  ref={phoneInputRef}
+                  onChange={() =>
+                    setFormInputValid({ ...formInputValid, phone: true })
+                  }
+                />
+                {!formInputValid.phone && (
+                  <p>Please enter a valid Phone Number!</p>
+                )}
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group className={emailControlClasses}>
+                <Form.Label>e-Mail Address</Form.Label>
+                <Form.Control
+                  type="email"
+                  ref={emailInputRef}
+                  onChange={() =>
+                    setFormInputValid({ ...formInputValid, email: true })
+                  }
+                />
+                {!formInputValid.email && <p>Please enter a valid Email!</p>}
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group className="mb-3">
+                <Form.Label>Country</Form.Label>
+                <Form.Select
+                  aria-label="Default select example"
+                  ref={countryInputRef}
+                >
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col lg={6}>
+              <Form.Group className="mb-3">
+                <Form.Label>City</Form.Label>
+                <Form.Select
+                  aria-label="Default select example"
+                  ref={cityInputRef}
+                >
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                </Form.Select>
+              </Form.Group>
+            </Col>
+            <Col lg={12}>
+              <Form.Group className={addressControlClasses}>
+                <Form.Label>Address</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  ref={addressInputRef}
+                  onChange={() =>
+                    setFormInputValid({ ...formInputValid, address: true })
+                  }
+                />
+                {!formInputValid.address && (
+                  <p>Please enter a valid Address!</p>
+                )}
+              </Form.Group>
+            </Col>
+          </Row>
         </div>
       </Col>
       <Steps

@@ -1,7 +1,7 @@
 import { images } from "../../assets/images";
 import { UilBars } from "@iconscout/react-unicons";
 import { UilMultiply } from "@iconscout/react-unicons";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
   let { pathname } = useLocation();
@@ -61,12 +61,12 @@ const Sidebar = () => {
             </ol>
           </div>
           <div className="menu">
-            <a href="/about-us" className="about-us_bar">
+            <Link to={"/about-us"} className="about-us_bar">
               <UilBars />
-            </a>
-            <a href="/" className="about-us_close">
+            </Link>
+            <Link to={-1} className="about-us_close">
               <UilMultiply />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
