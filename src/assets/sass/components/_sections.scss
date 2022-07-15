@@ -435,7 +435,7 @@
   }
   h2 {
     color: $secondary;
-    font-size: 4.8rem;
+    font-size: 3.8rem;
     font-family: $headings-font-family;
     margin-bottom: 4rem;
     @media (max-width: 1200px) {
@@ -583,7 +583,7 @@
 }
 
 .toast-notifcation {
-  position: absolute;
+  position: fixed;
   top: 50px;
   left: 50%;
   transform: translateX(-50%);
@@ -611,7 +611,7 @@
 .toast-body {
   text-align: center;
   color: #d4a474;
-  background: #412000;
+  background: #683502;
   font-weight: 700;
   font-size: 1.1rem;
   border-radius: 20px;
@@ -651,4 +651,35 @@
 
 .invalid input {
   border: 1px solid #aa0b20;
+}
+
+.invalid {
+  label {
+    color: #aa0b20;
+  }
+  p {
+    color: #aa0b20;
+    font-size: 0.9rem;
+    margin: 0;
+    margin-top: 4px;
+    margin-left: 18px;
+  }
+  input,
+  textarea {
+    border: 1px solid #aa0b20;
+  }
+}
+
+.form-information, .card-message {
+  @media (min-width: 991px) {
+    & {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 530px;
+      position: relative;
+      padding-left: 50px;
+      border-left: 1.8px solid #f9cb87;
+    }
+  }
 }

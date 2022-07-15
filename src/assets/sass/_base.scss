@@ -4,11 +4,11 @@
 
 #main-content {
   height: 100%;
-  margin-left: 200px;
+  margin-left: 150px;
   padding: 2rem;
   @media(max-width: 992px) {
     &{
-      margin-left: 172px;
+      margin-left: 150px;
       height: auto;
     }
     @media(max-width:768px) {
@@ -25,6 +25,7 @@
 }
 .about-page {
   #main-content {
+    height: auto;
     background-color: $primary;
   }
 
@@ -80,54 +81,54 @@ ul {
   transform: translateY(25%);
 }
 
-// .border-section {
-//   position: relative;
-//   padding-left: 50px;
-//   &::before {
-//     content: "";
-//     height: calc(100%);
-//     width: 1.2px;
-//     background: $border-color;
-//     position: absolute;
-//     top: 50%;
-//     left: 0;
-//     transform: translateY(-50%);
-//   }
-//   &-about {
-//     position: relative;
-//     padding-left: 50px;
-//     &::before {
-//       content: "";
-//       height: calc(100% + 40px);
-//       width: 1.2px;
-//       background: $border-color;
-//       position: absolute;
-//       top: 50%;
-//       left: 0;
-//       transform: translateY(-50%);
-//     }
-//   }
-//   @media (max-width: 992px) {
-//     & {
-//       padding-left: 0;
-//       &::before {
-//         display: none;
-//       }
-//     }
-//     &-about {
-//       padding-left: 0;
-//       &::before {
-//         display: none;
-//       }
-//     }
-//   }
+.border-section {
+  position: relative;
+  padding-left: 50px;
+  &::before {
+    content: "";
+    height: calc(100% + 150px);
+    width: 1.2px;
+    background: $border-color;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  &-about {
+    position: relative;
+    padding-left: 50px;
+    &::before {
+      content: "";
+      height: calc(100% + 40px);
+      width: 1.2px;
+      background: $border-color;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+    }
+  }
+  @media (max-width: 992px) {
+    & {
+      padding-left: 0;
+      &::before {
+        display: none;
+      }
+    }
+    &-about {
+      padding-left: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
 
-//   @media(max-width: 768px) {
-//     & {
+  @media(max-width: 768px) {
+    & {
       
-//     }
-//   }
-// }
+    }
+  }
+}
 .slide-next,
 .slide-prev {
   position: absolute;

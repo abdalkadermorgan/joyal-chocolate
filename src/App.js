@@ -13,8 +13,9 @@ import { useSelector } from "react-redux";
 // import ToastMessage from "./components/Layout/ToastMessage";
 
 function App() {
-  const { cart } = useSelector((state) => state);
+  const { cart, totalAmount } = useSelector((state) => state);
   console.log("cart store =>" ,cart );
+  console.log("totalAmount =>" ,totalAmount );
   // const activeClass = (route) => { return location.pathname === route ? "active" : null }
 
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path="form-information" element={<FormInformation />} />
                 <Route path="order-number" element={<Order />} />
                 <Route path="about-us" element={<AboutUs />} />
+                <Route path="*" element={<ChooseYourBox />} />
               </Routes>
             </Row>
           </div>

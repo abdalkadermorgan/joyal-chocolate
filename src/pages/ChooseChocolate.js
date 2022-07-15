@@ -9,15 +9,15 @@ import Chocolate from "../components/Type/Chocolate";
 
 const ChooseChocolate = (props) => {
   const [showToast, setShowToast] = useState(false);
-  const { cart } = useSelector((state) => state);
+  const { cart, totalAmount } = useSelector((state) => state);
 
-  const totalAmount = () => {
-    const totalAmountChocolate = 
-    cart.chocolate_type.reduce((total, item) => {
-      return total + item.price
-    }, 0)
-    return cart.price + totalAmountChocolate;
-  }
+  // const totalAmount = () => {
+  //   const totalAmountChocolate = 
+  //   cart.chocolate_type.reduce((total, item) => {
+  //     return total + item.price
+  //   }, 0)
+  //   return cart.price + totalAmountChocolate;
+  // }
 
   	
   let navigate = useNavigate();
@@ -39,7 +39,7 @@ const ChooseChocolate = (props) => {
       <Col lg={7}>
         <Chocolate />
       </Col>
-      <Steps onClick={nextStep} prev={'/'} totalAmount={totalAmount()} />
+      <Steps onClick={nextStep} prev={'/'} totalAmount={totalAmount} nextTitle={'Next Step'} />
     </Fragment>
   );
 };

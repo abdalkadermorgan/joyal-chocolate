@@ -2,8 +2,12 @@ import { useRef, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
 const isEmpty = (value) => value.trim() === "";
+const isEmail = (value) => value.includes('@');
 
 const Information = () => {
+  const [form, setForm] = useState({});
+
+  console.log("form => ", form);
   const [formInputValid, setFormInputValid] = useState({
     name: true,
     phone: true,
@@ -32,7 +36,7 @@ const Information = () => {
 
     const enterdNameIsValid = !isEmpty(enterdName);
     const enterdPhoneIsValid = !isEmpty(enterdPhone);
-    const enterdEmailIsValid = !isEmpty(enterdEmail);
+    const enterdEmailIsValid = !isEmpty(enterdEmail) || !isEmail(enterdEmail);
     const enterdCountyIsValid = !isEmpty(enterdCounty);
     const enterdCityIsValid = !isEmpty(enterdCity);
     const enterdAddressIsValid = !isEmpty(enterdAddress);
@@ -56,6 +60,8 @@ const Information = () => {
 
     if (!formIsValid) {
       return;
+    } else {
+      setForm({enterdName, enterdPhone, enterdEmail, enterdCounty, enterdCity, enterdAddress})
     }
   };
 

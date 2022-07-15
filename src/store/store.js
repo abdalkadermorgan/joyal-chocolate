@@ -26,7 +26,7 @@ const initialState = {
     //   },
     // ],
   },
-  // totalAmount: parseInt(0),
+  totalAmount: parseInt(0),
 };
 
 export const reducer = persistReducer(
@@ -71,7 +71,11 @@ export const reducer = persistReducer(
                   name: "",
                   type_id: -1,
                   price: 0,
-                  merge: {},
+                  merge: {
+                    id: -1,
+                  name: '',
+                  price: 0,
+                  },
                 },
               },
             ],
@@ -92,6 +96,13 @@ export const reducer = persistReducer(
         } else if (TypeBox === 3 && state.cart.chocolate_type.length > 3) {
           state.cart.chocolate_type.shift();
         }
+        const totalAmount = () => {
+          const totalAmountChocolate = state.cart.chocolate_type.reduce((total, item) => {
+            return total + item.price
+          }, 0)
+          return state.cart.price + totalAmountChocolate;
+        }
+        state.totalAmount = totalAmount();
         return { ...state };
       }
 
@@ -107,7 +118,11 @@ export const reducer = persistReducer(
                 name: filling_chocolate.name,
                 price: filling_chocolate.price,
                 type_id: type_id,
-                merge: {},
+                merge: {
+                  id: -1,
+                  name: '',
+                  price: 0,
+                },
               },
             };
           }
@@ -117,13 +132,28 @@ export const reducer = persistReducer(
           ...state.cart,
           chocolate_type: newFilling,
         };
+        const totalAmount = () => {
+          const totalAmountChocolate = state.cart.chocolate_type.reduce((total, item) => {
+            return total + item.price;
+          }, 0);
+
+          const priceFillingType = state.cart.chocolate_type.map(
+            (e) => e.filling_type.price
+          );
+  
+          const totalAmountFilling = priceFillingType.reduce((total, item) => {
+            return total + item;
+          }, 0);
+          return state.cart.price + totalAmountChocolate + totalAmountFilling
+        }
+        state.totalAmount = totalAmount();
+
         return { ...state };
       }
 
       case actionTypes.setAddedMerge: {
         const type_id = action.payload.type_id;
         const merge = action.payload.marge;
-        console.log("margee", merge);
         const newMerge = state.cart.chocolate_type.map((e) => {
           if (e.id === type_id) {
             e = {
@@ -145,9 +175,32 @@ export const reducer = persistReducer(
           ...state.cart,
           chocolate_type: newMerge,
         };
+        const totalAmount = () => {
+          const totalAmountChocolate = state.cart.chocolate_type.reduce((total, item) => {
+            return total + item.price;
+          }, 0);
+
+          const priceFillingType = state.cart.chocolate_type.map(
+            (e) => e.filling_type.price
+          );
+  
+          const totalAmountFilling = priceFillingType.reduce((total, item) => {
+            return total + item;
+          }, 0);
+          const priceMerge = state.cart.chocolate_type.map(
+            (e) => e.filling_type.merge.price
+          );
+          const totalAmountMerge = priceMerge.reduce((total, item) => {
+            return total + item;
+          }, 0);
+          return state.cart.price + totalAmountChocolate + totalAmountFilling + totalAmountMerge
+        }
+
+        state.totalAmount = totalAmount();
 
         return { ...state };
       }
+
 
       default:
         return state;
@@ -183,4 +236,6 @@ export const Action = {
       payload: { marge, type_id },
     };
   },
+
+
 };

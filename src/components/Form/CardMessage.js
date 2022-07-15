@@ -2,7 +2,7 @@ import { Form } from "react-bootstrap";
 
 const CardMessage = () => {
   return (
-    <div className="border-section card-message">
+    <div className="card-message">
       <Form.Group className="mb-3">
         <Form.Label>Sender Name</Form.Label>
         <Form.Control type="text" />

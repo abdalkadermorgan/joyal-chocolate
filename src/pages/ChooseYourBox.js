@@ -9,9 +9,9 @@ import Box from "../components/Type/Box";
 
 const ChooseYourBox = () => {
   const [showToast, setShowToast] = useState(false);
-  const { cart } = useSelector((state) => state);
+  const { cart, totalAmount } = useSelector((state) => state);
 
-  const totalAmount =  cart.price;
+  // const totalAmount =  cart.price;
 	
   let navigate = useNavigate();
   
@@ -19,14 +19,12 @@ const ChooseYourBox = () => {
     if(cart.id === undefined || cart.id === -1) {
       setShowToast(true)
     } else {
-      console.log("done");
       navigate('/choose-chocolate');
     }
   }
 
   useEffect(() => {
     if(cart.id === undefined || cart.id === -1) {
-      console.log("error2");
       
     }
   }, [])
