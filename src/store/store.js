@@ -75,20 +75,20 @@ export const reducer = persistReducer(
                   price: 0,
                   merge: {
                     id: -1,
-                  name: '',
-                  price: 0,
+                    name: '',
+                    price: 0,
                   },
                 },
               },
             ],
           };
         } else {
-          const test = state.cart.chocolate_type.filter(
+          const newChocolateType = state.cart.chocolate_type.filter(
             (e) => e.id !== dataChocolateType.id
           );
           state.cart = {
             ...state.cart,
-            chocolate_type: test,
+            chocolate_type: newChocolateType,
           };
         }
         if (TypeBox === 1 && state.cart.chocolate_type.length > 1) {
@@ -142,7 +142,7 @@ export const reducer = persistReducer(
           const priceFillingType = state.cart.chocolate_type.map(
             (e) => e.filling_type.price
           );
-  
+
           const totalAmountFilling = priceFillingType.reduce((total, item) => {
             return total + item;
           }, 0);
@@ -185,7 +185,7 @@ export const reducer = persistReducer(
           const priceFillingType = state.cart.chocolate_type.map(
             (e) => e.filling_type.price
           );
-  
+
           const totalAmountFilling = priceFillingType.reduce((total, item) => {
             return total + item;
           }, 0);
@@ -206,7 +206,7 @@ export const reducer = persistReducer(
       case actionTypes.setAddForm: {
         const form = action.payload.form;
         state.formInformation = form
-        return {...state };
+        return { ...state };
       }
 
 
