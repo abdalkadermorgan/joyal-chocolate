@@ -16,7 +16,7 @@
   @media (min-width: 991px) {
     & {
       justify-content: center;
-      height: 530px;
+      height: 555px;
       position: relative;
       overflow-y: auto;
       &::-webkit-scrollbar {
@@ -29,6 +29,9 @@
       &::-webkit-scrollbar-thumb {
         background: $primary;
         border-radius: 10px;
+      }
+      &.filling-box {
+        justify-content: normal;
       }
     }
   }
@@ -670,7 +673,8 @@
   }
 }
 
-.form-information, .card-message {
+.form-information,
+.card-message {
   @media (min-width: 991px) {
     & {
       display: flex;

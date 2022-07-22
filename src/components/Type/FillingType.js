@@ -7,7 +7,7 @@ const FillingType = () => {
   const { cart } = useSelector((state) => state);
 
   return (
-    <div className="box-type">
+    <div className="box-type filling-box">
       {cart.chocolate_type.map((type, i) => (
         <ChocolateType type={type} key={`chocolate-type${i}`} />
       ))}

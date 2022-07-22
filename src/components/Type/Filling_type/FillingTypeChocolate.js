@@ -30,6 +30,7 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
         className="mySwiper"
         slidesPerView={1}
         spaceBetween={0}
+        centeredSlides={false}
         onInit={(swiper) => {
           ref.current = swiper;
         }}
@@ -56,7 +57,7 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
           },
           1400: {
             slidesPerView: 4,
-            spaceBetween: 0,
+            spaceBetween: 5,
           },
         }}
       >
@@ -68,15 +69,14 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
                 addNewFillingType(filling);
               }}
               className={`filling-type 
-              ${
-                cart.chocolate_type.filter(
-                  (e) =>
-                    e.filling_type.id === filling.id &&
-                    e.filling_type.type_id === type_id
-                ).length
+              ${cart.chocolate_type.filter(
+                (e) =>
+                  e.filling_type.id === filling.id &&
+                  e.filling_type.type_id === type_id
+              ).length
                   ? "active"
                   : ""
-              }`}
+                }`}
             >
               <div className="tab-header">
                 <div className="tab-header_img">
