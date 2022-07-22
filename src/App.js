@@ -21,7 +21,7 @@ function App() {
   const AuthFilling = AuthChocolate || cart?.chocolate_type?.length <= 0 || cart?.chocolate_type === undefined || cart?.chocolate_type?.length < cart?.box_number;
   const AuthCard = AuthChocolate || AuthFilling || cart?.chocolate_type?.find(e => e.filling_type.id ) === -1 || cart?.chocolate_type?.find(e => e.filling_type.merge.id === -1)
   const AuthForm = AuthChocolate || AuthFilling || AuthCard;
-  const AuthInformation = AuthChocolate || AuthFilling || formInformation?.name === undefined;
+  // const AuthInformation = AuthChocolate || AuthFilling || formInformation?.name === undefined;
 
   return (
         <BrowserRouter>
@@ -34,7 +34,7 @@ function App() {
                 {!AuthFilling && <Route path="choose-filling" element={<ChooseFilling />} />}
                 {!AuthCard && <Route path="card-message" element={<GiftCardMessage />} />}
                 {!AuthForm && <Route path="form-information" element={<FormInformation />} />}
-                {!AuthInformation && <Route path="order-number" element={<Order />} />}
+                <Route path="order-number" element={<Order />} />
                 <Route path="about-us" element={<AboutUs />} />
                 <Route path="*" element={<Navigate to={-1} replace />} />
               </Routes>

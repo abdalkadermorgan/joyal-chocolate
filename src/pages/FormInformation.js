@@ -43,7 +43,7 @@ const FormInformation = () => {
 
     const enterdNameIsValid = !isEmpty(enterdName);
     const enterdPhoneIsValid = !isEmpty(enterdPhone);
-    const enterdEmailIsValid = !isEmpty(enterdEmail) || !isEmail(enterdEmail);
+    const enterdEmailIsValid = !isEmpty(enterdEmail);
     const enterdCountyIsValid = !isEmpty(enterdCounty);
     const enterdCityIsValid = !isEmpty(enterdCity);
     const enterdAddressIsValid = !isEmpty(enterdAddress);
