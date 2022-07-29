@@ -7,30 +7,42 @@ import Steps from "../components/Layout/Steps";
 import ToastMessage from "../components/Layout/ToastMessage";
 import Chocolate from "../components/Type/Chocolate";
 
-const ChooseChocolate = () => {
+const ChooseChocolate = (props) => {
   const [showToast, setShowToast] = useState(false);
-  const { cart, totalAmount } = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
 
   let navigate = useNavigate();
-  
+
   const nextStep = () => {
-    if(cart.chocolate_type.map(e => e).length !== cart.box_number  || cart.id === -1) {
-      setShowToast(true)
+    if (
+      cart.types.map((e) => e).length !== cart.types_count ||
+      cart.id === -1
+    ) {
+      setShowToast(true);
     } else {
-      navigate('/choose-filling');
+      navigate("/choose-filling");
     }
-  }
+  };
 
   return (
     <Fragment>
-      <ToastMessage show={showToast} onClose={() => setShowToast(false)} message={"Please choose the correct number of chocolates"} />
+      <ToastMessage
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        message={"Please choose the correct number of chocolates"}
+      />
       <Col lg={5}>
         <SelectTitle number="02" title="Choose the chocolate shape" />
       </Col>
       <Col lg={7}>
-        <Chocolate />
+        <Chocolate chocolateType={props.chocolateType} />
       </Col>
-      <Steps onClick={nextStep} prev={'/'} totalAmount={totalAmount} nextTitle={'Next Step'} />
+      <Steps
+        onClick={nextStep}
+        prev={"/"}
+        totalAmount={cart.totalAmount}
+        nextTitle={"Next Step"}
+      />
     </Fragment>
   );
 };

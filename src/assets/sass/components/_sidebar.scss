@@ -140,6 +140,8 @@
       }
     }
   }
+
+
   .menu {
     svg {
       width: 50px;
@@ -169,3 +171,22 @@
   }  
 }
 
+
+[dir = "rtl"] {
+  .point-steps {
+    &::before {
+      right: auto;
+      left: -2px;
+    }
+    ol li {
+      text-align: left;
+      &::before {
+        margin-right: auto;
+        margin-left: 0;
+        float: left;
+        right: auto;
+        left: -14px;
+      }
+    }
+  }
+}

@@ -6,21 +6,28 @@
   height: 100%;
   margin-left: 150px;
   padding: 2rem;
-  @media(max-width: 992px) {
-    &{
+  @media (max-width: 992px) {
+    & {
       margin-left: 150px;
       height: auto;
     }
-    @media(max-width:768px) {
-      &{
+    @media (max-width: 768px) {
+      & {
         margin-left: 0;
       }
     }
   }
-  @media(max-width: 576px) {
-    &{
+  @media (max-width: 576px) {
+    & {
       padding: 1rem;
     }
+  }
+}
+
+[dir="rtl"] {
+  #main-content {
+    margin-left: 0;
+    margin-right: 150px;
   }
 }
 .about-page {
@@ -28,7 +35,6 @@
     height: auto;
     background-color: $primary;
   }
-
 }
 h1,
 h2 {
@@ -123,9 +129,8 @@ ul {
     }
   }
 
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     & {
-      
     }
   }
 }
@@ -149,4 +154,36 @@ ul {
 }
 .slide-prev {
   left: 0;
+}
+
+[dir="rtl"] {
+  .border-section-about,
+  .border-section {
+    padding-left: 0;
+    padding-right: 50px;
+    &::before {
+      left: auto;
+      right: 0;
+    }
+  }
+}
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-image: url("../images/background.png");
+  background-position: center;
+  background-repeat: repeat;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  .spinner-grow {
+    width: 3rem;
+    height: 3rem;
+  }
 }

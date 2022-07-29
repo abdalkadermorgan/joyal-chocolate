@@ -7,15 +7,16 @@ import Steps from "../components/Layout/Steps";
 import ToastMessage from "../components/Layout/ToastMessage";
 import FillingType from "../components/Type/FillingType";
 
-const ChooseFilling = () => {
+const ChooseFilling = (props) => {
   const [showToast, setShowToast] = useState(false);
-  const { cart, totalAmount } = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
+
   let navigate = useNavigate();
   const nextStep = () => {
     if (
-      cart.chocolate_type.find((e) => e.filling_type.id === -1) ||
-      cart.chocolate_type.find((e) => e.filling_type.merge.id === undefined) ||
-      cart.chocolate_type.find((e) => e.filling_type.merge.id === -1)
+      cart.types.find((e) => e.filling_id.id === -1) ||
+      cart.types.find((e) => e.merge_id.id === undefined) ||
+      cart.types.find((e) => e.merge_id.id === -1)
     ) {
       setShowToast(true);
     } else {
@@ -34,12 +35,12 @@ const ChooseFilling = () => {
         <SelectTitle number="03" title="Choose the filling type" />
       </Col>
       <Col lg={7}>
-        <FillingType />
+        <FillingType fillingType={props.fillingType} merge={props.merge} />
       </Col>
       <Steps
         onClick={nextStep}
         prev={"/choose-chocolate"}
-        totalAmount={totalAmount}
+        totalAmount={cart.totalAmount}
         nextTitle={"Next Step"}
       />
     </Fragment>

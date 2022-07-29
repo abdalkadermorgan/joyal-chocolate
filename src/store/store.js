@@ -6,29 +6,14 @@ export const actionTypes = {
   setAddedFilling: "[setAddedFilling] Action",
   setAddedMerge: "[setAddedMerge] Action",
   setAddForm: "[setAddForm] Action",
+  setAddGiftMessage: "[setAddGiftMessage] Action",
+  resetCart: "[resetCart] Action",
+  setOrderNumber: "[setOrderNumber] Action",
 };
 
 const initialState = {
-  cart: {
-    // id: data.box_type[0].id,
-    // title: "",
-    // box_number: -1,
-    // price: 0,
-    // chocolate_type: [
-    //   {
-    //     id: -1,
-    //     name: "",
-    //     filling_type: {
-    //       id: -1,
-    //       name: "",
-    //       type_id: -1,
-    //       merge: {},
-    //     },
-    //   },
-    // ],
-  },
-  totalAmount: parseInt(0),
-  formInformation: {}
+  cart: { },
+  order_number: null,
 };
 
 export const reducer = persistReducer(
@@ -36,95 +21,98 @@ export const reducer = persistReducer(
     storage,
     key: "root",
     debug: true,
-    whitelist: ["cart", "totalAmount", "formInformation"],
+    whitelist: ["cart"],
   },
   (state = initialState, action) => {
     switch (action.type) {
       case actionTypes.setAddedBox: {
         const dataBoxType = action.payload.data;
         const newBox = (state.cart = {
-          id: dataBoxType.id,
-          title: dataBoxType.title,
+          box_id: dataBoxType.id,
+          title: dataBoxType.name,
           price: parseInt(dataBoxType.price),
-          box_number: dataBoxType.box_number,
-          chocolate_type: [],
+          types_count: dataBoxType.types_count,
+          types: [],
         });
-        state.totalAmount = parseInt(newBox.price);
+        state.cart.totalAmount = parseInt(newBox.price);
         return { ...state };
       }
 
       case actionTypes.setAddedChocolate: {
         const dataChocolateType = action.payload.data;
-        const TypeBox = state.cart.box_number;
-        const existingItem = state.cart.chocolate_type.find(
+        const TypeBox = state.cart.types_count;
+        const existingItem = state.cart.types.find(
           (item) => item.id === dataChocolateType.id
         );
         if (!existingItem) {
           state.cart = {
             ...state.cart,
-            chocolate_type: [
-              ...state.cart.chocolate_type,
+            types: [
+              ...state.cart.types,
               {
-                id: dataChocolateType.id,
+                chocolate_type_id: dataChocolateType.id,
                 name: dataChocolateType.name,
                 price: parseInt(dataChocolateType.price),
-                filling_type: {
+                filling_id: {
                   id: -1,
                   name: "",
                   type_id: -1,
                   price: 0,
-                  merge: {
-                    id: -1,
-                    name: '',
-                    price: 0,
-                  },
+                },
+                merge_id: {
+                  id: -1,
+                  name: "",
+                  price: 0,
                 },
               },
             ],
           };
         } else {
-          const newChocolateType = state.cart.chocolate_type.filter(
+          const newChocolateType = state.cart.types.filter(
             (e) => e.id !== dataChocolateType.id
           );
           state.cart = {
             ...state.cart,
-            chocolate_type: newChocolateType,
+            types: newChocolateType,
           };
         }
-        if (TypeBox === 1 && state.cart.chocolate_type.length > 1) {
-          state.cart.chocolate_type.shift();
-        } else if (TypeBox === 2 && state.cart.chocolate_type.length > 2) {
-          state.cart.chocolate_type.shift();
-        } else if (TypeBox === 3 && state.cart.chocolate_type.length > 3) {
-          state.cart.chocolate_type.shift();
+        if (TypeBox === 1 && state.cart.types.length > 1) {
+          state.cart.types.shift();
+        } else if (TypeBox === 2 && state.cart.types.length > 2) {
+          state.cart.types.shift();
+        } else if (TypeBox === 3 && state.cart.types.length > 3) {
+          state.cart.types.shift();
         }
         const totalAmount = () => {
-          const totalAmountChocolate = state.cart.chocolate_type.reduce((total, item) => {
-            return total + item.price
-          }, 0)
+          const totalAmountChocolate = state.cart.types.reduce(
+            (total, item) => {
+              return total + item.price;
+            },
+            0
+          );
           return state.cart.price + totalAmountChocolate;
-        }
-        state.totalAmount = totalAmount();
+        };
+        state.cart.totalAmount = totalAmount();
         return { ...state };
       }
 
       case actionTypes.setAddedFilling: {
         const type_id = action.payload.type_id;
         const filling_chocolate = action.payload.filling;
-        const newFilling = state.cart.chocolate_type.map((e) => {
-          if (e.id === type_id) {
+        const newFilling = state.cart.types.map((e) => {
+          if (e.chocolate_type_id === type_id) {
             e = {
               ...e,
-              filling_type: {
+              filling_id: {
                 id: filling_chocolate.id,
                 name: filling_chocolate.name,
                 price: filling_chocolate.price,
                 type_id: type_id,
-                merge: {
-                  id: -1,
-                  name: '',
-                  price: 0,
-                },
+              },
+              merge_id: {
+                id: -1,
+                name: "",
+                price: 0,
               },
             };
           }
@@ -132,23 +120,26 @@ export const reducer = persistReducer(
         });
         state.cart = {
           ...state.cart,
-          chocolate_type: newFilling,
+          types: newFilling,
         };
         const totalAmount = () => {
-          const totalAmountChocolate = state.cart.chocolate_type.reduce((total, item) => {
-            return total + item.price;
-          }, 0);
+          const totalAmountChocolate = state.cart.types.reduce(
+            (total, item) => {
+              return total + item.price;
+            },
+            0
+          );
 
-          const priceFillingType = state.cart.chocolate_type.map(
-            (e) => e.filling_type.price
+          const priceFillingType = state.cart.types.map(
+            (e) => e.filling_id.price
           );
 
           const totalAmountFilling = priceFillingType.reduce((total, item) => {
             return total + item;
           }, 0);
-          return state.cart.price + totalAmountChocolate + totalAmountFilling
-        }
-        state.totalAmount = totalAmount();
+          return state.cart.price + totalAmountChocolate + totalAmountFilling;
+        };
+        state.cart.totalAmount = totalAmount();
 
         return { ...state };
       }
@@ -156,17 +147,14 @@ export const reducer = persistReducer(
       case actionTypes.setAddedMerge: {
         const type_id = action.payload.type_id;
         const merge = action.payload.marge;
-        const newMerge = state.cart.chocolate_type.map((e) => {
-          if (e.id === type_id) {
+        const newMerge = state.cart.types.map((e) => {
+          if (e.chocolate_type_id === type_id) {
             e = {
               ...e,
-              filling_type: {
-                ...e.filling_type,
-                merge: {
-                  id: merge.id,
-                  name: merge.name,
-                  price: merge.price,
-                },
+              merge_id: {
+                id: merge.id,
+                name: merge.name,
+                price: merge.price,
               },
             };
           }
@@ -175,40 +163,80 @@ export const reducer = persistReducer(
 
         state.cart = {
           ...state.cart,
-          chocolate_type: newMerge,
+          types: newMerge,
         };
         const totalAmount = () => {
-          const totalAmountChocolate = state.cart.chocolate_type.reduce((total, item) => {
-            return total + item.price;
-          }, 0);
+          const totalAmountChocolate = state.cart.types.reduce(
+            (total, item) => {
+              return total + item.price;
+            },
+            0
+          );
 
-          const priceFillingType = state.cart.chocolate_type.map(
-            (e) => e.filling_type.price
+          const priceFillingType = state.cart.types.map(
+            (e) => e.filling_id.price
           );
 
           const totalAmountFilling = priceFillingType.reduce((total, item) => {
             return total + item;
           }, 0);
-          const priceMerge = state.cart.chocolate_type.map(
-            (e) => e.filling_type.merge.price
-          );
+          const priceMerge = state.cart.types.map((e) => e.merge_id.price);
           const totalAmountMerge = priceMerge.reduce((total, item) => {
             return total + item;
           }, 0);
-          return state.cart.price + totalAmountChocolate + totalAmountFilling + totalAmountMerge
-        }
+          return (
+            state.cart.price +
+            totalAmountChocolate +
+            totalAmountFilling +
+            totalAmountMerge
+          );
+        };
 
-        state.totalAmount = totalAmount();
+        state.cart.totalAmount = totalAmount();
 
         return { ...state };
       }
 
       case actionTypes.setAddForm: {
-        const form = action.payload.form;
-        state.formInformation = form
+        const fullname = action.payload.fullname;
+        const phone = action.payload.phone;
+        const email = action.payload.email;
+        const country = action.payload.country;
+        const city = action.payload.city;
+        const address = action.payload.address;
+        state.cart = {
+          ...state.cart,
+          fullname: fullname,
+          phone: phone,
+          email: email,
+          country: country,
+          city: city,
+          address: address,
+        };
+        return { ...state };
+      }
+      case actionTypes.setAddGiftMessage: {
+        const senderName = action.payload.senderName;
+        const message = action.payload.message;
+        state.cart = {
+          ...state.cart,
+          senderName: senderName,
+          message: message,
+        };
         return { ...state };
       }
 
+
+      case actionTypes.setOrderNumber: {
+        const orederNumber = action.payload.orderNumber;
+        state.order_number = orederNumber;
+        return { ...state };
+      }
+
+      case actionTypes.resetCart: {
+        state.cart = {};
+        return { ...state };
+      }
 
       default:
         return state;
@@ -244,12 +272,32 @@ export const Action = {
       payload: { marge, type_id },
     };
   },
-  setAddForm: (form) => {
+  
+  setAddForm: (fullname, phone, email, country, city, address) => {
     return {
       type: actionTypes.setAddForm,
-      payload: { form },
+      payload: { fullname, phone, email, country, city, address },
     };
   },
 
+  setAddGiftMessage: (senderName, message) => {
+    return {
+      type: actionTypes.setAddGiftMessage,
+      payload: { senderName, message },
+    };
+  },
 
+  setOrderNumber: (orderNumber) => {
+    return {
+      type: actionTypes.setOrderNumber,
+      payload: { orderNumber },
+    };
+  },
+
+  resetCart: (cart) => {
+    return {
+      type: actionTypes.resetCart,
+      payload: { cart },
+    };
+  },
 };

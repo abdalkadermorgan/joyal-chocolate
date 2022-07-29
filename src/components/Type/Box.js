@@ -1,11 +1,8 @@
-import { images } from "../../assets/images";
-import data from "../data.json";
 import { useDispatch, useSelector } from "react-redux";
 import { Action } from "../../store/store";
 import Form from "react-bootstrap/Form";
 
-const Box = () => {
-  const boxType = data.box_type;
+const Box = ({boxType}) => {
   const { cart } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -23,10 +20,10 @@ const Box = () => {
         >
           <div className="content">
             <div className="box-img">
-              <img src={images.onePart} alt={data.title} />
+              <img src={data.image_url} alt={data.name} />
             </div>
             <div className="num-price">
-              <h4>{data.title}</h4>
+              <h4>{data.name}</h4>
               <p>$ {data.price}</p>
             </div>
           </div>
@@ -37,7 +34,7 @@ const Box = () => {
             aria-label="option 1"
             value={data.id}
             id={`box-${index}`}
-            checked={cart.id === data.id ? true : false}
+            checked={cart.box_id === data.id ? true : false}
             onChange={() => addNewBox(data)}
           />
         </label>

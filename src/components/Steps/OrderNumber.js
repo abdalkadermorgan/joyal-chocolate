@@ -1,8 +1,8 @@
-const OrderNumber = () => {
+const OrderNumber = (props) => {
     return(
         <div className="border-section order-number">
             <span>Your Order Number Is:</span>
-            <p>00448364</p>
+            <p>{props.order_number}</p>
         </div>
     )
 }

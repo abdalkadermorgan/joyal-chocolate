@@ -201,6 +201,19 @@
   }
 }
 
+[dir="rtl"] {
+  .box-type {
+    padding-left: 0;
+    padding-right: 50px;
+    border-left: none;
+    border-right: 1.8px solid #f9cb87;
+  }
+  .box-type .select-box .content .box-img {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+}
+
 .select-filling {
   display: flex;
   position: relative;
@@ -291,6 +304,7 @@
       font-weight: bold;
     }
   }
+
   .tab-header {
     display: flex;
     align-items: center;
@@ -374,6 +388,17 @@
         }
       }
     }
+  }
+}
+
+[dir="rtl"] {
+  .select-filling .chocolate-content .chocolate-img {
+    margin-right: 0;
+    margin-left: 10px;
+  }
+  .select-filling .tab-header_img {
+    margin-right: 0;
+    margin-left: 10px;
   }
 }
 
@@ -496,6 +521,7 @@
       }
     }
   }
+
   @media (max-width: 992px) {
     h2 {
       font-size: 3.5rem;
@@ -509,6 +535,18 @@
     }
   }
 }
+
+[dir = "rtl"] {
+  .about-us ul.contact-us-icon li:not(:last-child) {
+    margin-right: 0;
+    margin-left: 50px;
+  }
+  .about-us ul.contact-us li span {
+    margin-left: 0;
+    margin-right: 16px;
+  }
+}
+
 
 .steps {
   margin-top: 50px;
@@ -572,6 +610,21 @@
     border-top-right-radius: 60px;
   }
   .btn-step-prev {
+    border-bottom-left-radius: 60px;
+    border-top-left-radius: 60px;
+  }
+}
+
+[dir="rtl"] {
+  .steps .btn-step-prev {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-right-radius: 60px;
+    border-top-right-radius: 60px;
+  }
+  .steps .btn-step-next {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
     border-bottom-left-radius: 60px;
     border-top-left-radius: 60px;
   }
@@ -685,5 +738,22 @@
       padding-left: 50px;
       border-left: 1.8px solid #f9cb87;
     }
+  }
+}
+
+[dir = "rtl"] {
+  @media(min-width: 991px) {
+    .form-information, .card-message {
+      padding-left: 0;
+      padding-right: 50px;
+      border-left: none;
+      border-right: 1.8px solid #f9cb87;
+    }
+  }
+}
+
+[dir = "rtl"] {
+  .form-select {
+    background-position: left 0.75rem center;
   }
 }

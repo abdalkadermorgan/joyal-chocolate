@@ -1,11 +1,9 @@
-import data from "../data.json";
-import { images } from "../../assets/images";
 import { useDispatch, useSelector } from "react-redux";
 import { Action } from "../../store/store";
 import { Form } from "react-bootstrap";
 
-const Chocolate = () => {
-  const boxType = data.chocolate_type;
+const Chocolate = ({chocolateType}) => {
+  // const chocolateType = data.chocolate_type;
   const { cart } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -16,11 +14,11 @@ const Chocolate = () => {
 
   return (
     <div className="box-type">
-      {boxType.map((data, index) => (
+      {chocolateType.map((data, index) => (
         <label
           htmlFor={`chocalate-${index}`}
           className={`select-box ${
-            cart.chocolate_type.filter((e) => e.id === data.id).length
+            cart.types.filter((e) => e.id === data.id).length
               ? "active"
               : ""
           }`}
@@ -28,7 +26,7 @@ const Chocolate = () => {
         >
           <div className="content">
             <div className="box-img chocalate-img">
-              <img src={images.ovalChocolate} alt={data.title} />
+              <img src={data.image_url} alt={data.title} />
             </div>
             <div className="num-price">
               <h4>{data.name}</h4>
@@ -46,7 +44,7 @@ const Chocolate = () => {
             value={data.id}
             id={`chocalate-${index}`}
             checked={
-              cart.chocolate_type.filter((e) => e.id === data.id).length
+              cart.types.filter((e) => e.chocolate_type_id === data.id).length
                 ? true
                 : false
             }

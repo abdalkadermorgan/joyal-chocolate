@@ -4,16 +4,72 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SelectTitle from "../components/Layout/SelectTitle";
 import Steps from "../components/Layout/Steps";
+import ToastMessage from "../components/Layout/ToastMessage";
 import { Action } from "../store/store";
 
 const isEmpty = (value) => value.trim() === "";
-const isEmail = (value) => value.includes("@");
+// const isEmail = (value) => value.includes("@");
 
 const FormInformation = () => {
-  const { totalAmount, formInformation } = useSelector((state) => state);
+  const [showToast, setShowToast] = useState(false);
+  const [form, setForm] = useState({});
+  const [error, setError] = useState("");
+  console.log("form =>", form);
+  const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
 
   let navigate = useNavigate();
+
+  async function addFormHandler() {
+    const newCart = {
+      sender_name: cart.senderName,
+      message: cart.message,
+      fullname: form.fullname,
+      phone: form.phone,
+      total_amount: cart.totalAmount,
+      email: form.email,
+      country: form.country,
+      city: form.city,
+      address: form.address,
+      box_id: cart.box_id,
+      types: cart.types.map((e) => {
+        e = {
+          chocolate_type_id: e.chocolate_type_id,
+          filling_id: e.filling_id.id,
+          merge_id: e.merge_id.id,
+        };
+        return e;
+      }),
+    };
+    const response = await fetch("https://kharj.inlinez.net/api/create", {
+      method: "POST",
+      body: JSON.stringify(newCart),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    
+    console.log("respon =>>", response);
+    const res = await response.json();
+
+    console.log("newCart", newCart);
+    if (res.status === true) {
+      const orderNumber = res.data;
+      setTimeout(() => {
+        dispatch(Action.setOrderNumber(orderNumber));
+        navigate("/order-number");
+      }, 200);
+      console.log("resIf => ", res);
+    } else {
+      setShowToast(true);
+      setError(res.msg);
+    }
+    console.log("newCart", newCart);
+    // setForm((e) => ({
+    //   fullname: '', phone: '', email: '', country: '', city: '', address: ''
+    // }));
+  
+  }
 
   const [formInputValid, setFormInputValid] = useState({
     name: true,
@@ -34,54 +90,45 @@ const FormInformation = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const enterdName = nameInputRef.current.value;
-    const enterdPhone = phoneInputRef.current.value;
-    const enterdEmail = emailInputRef.current.value;
-    const enterdCounty = countryInputRef.current.value;
-    const enterdCity = cityInputRef.current.value;
-    const enterdAddress = addressInputRef.current.value;
+    const fullname = nameInputRef.current.value;
+    const phone = phoneInputRef.current.value;
+    const email = emailInputRef.current.value;
+    const country = countryInputRef.current.value;
+    const city = cityInputRef.current.value;
+    const address = addressInputRef.current.value;
 
-    const enterdNameIsValid = !isEmpty(enterdName);
-    const enterdPhoneIsValid = !isEmpty(enterdPhone);
-    const enterdEmailIsValid = !isEmpty(enterdEmail);
-    const enterdCountyIsValid = !isEmpty(enterdCounty);
-    const enterdCityIsValid = !isEmpty(enterdCity);
-    const enterdAddressIsValid = !isEmpty(enterdAddress);
+    const fullnameIsValid = !isEmpty(fullname);
+    const phoneIsValid = !isEmpty(phone);
+    const emailIsValid = !isEmpty(email);
+    const countryIsValid = !isEmpty(country);
+    const cityIsValid = !isEmpty(city);
+    const addressIsValid = !isEmpty(address);
 
     setFormInputValid({
-      name: enterdNameIsValid,
-      phone: enterdPhoneIsValid,
-      email: enterdEmailIsValid,
-      country: enterdCountyIsValid,
-      city: enterdCityIsValid,
-      address: enterdAddressIsValid,
+      name: fullnameIsValid,
+      phone: phoneIsValid,
+      email: emailIsValid,
+      country: countryIsValid,
+      city: cityIsValid,
+      address: addressIsValid,
     });
 
     const formIsValid =
-      enterdNameIsValid &&
-      enterdPhoneIsValid &&
-      enterdEmailIsValid &&
-      enterdCountyIsValid &&
-      enterdCityIsValid &&
-      enterdAddressIsValid;
+      fullnameIsValid &&
+      phoneIsValid &&
+      emailIsValid &&
+      countryIsValid &&
+      cityIsValid &&
+      addressIsValid;
 
     if (!formIsValid) {
       return;
     } else {
-      const form = {
-        enterdName,
-        enterdPhone,
-        enterdEmail,
-        enterdCounty,
-        enterdCity,
-        enterdAddress,
-      };
-
-      dispatch(Action.setAddForm(form));
-      setTimeout(() => {
-        navigate("/order-number");
-        localStorage.clear();
-      }, 200);
+      // setForm({fullname, phone, email, country, city, address})
+      // dispatch(
+      //   Action.setAddForm(fullname, phone, email, country, city, address)
+      // );
+        addFormHandler(cart);
     }
   };
 
@@ -97,6 +144,11 @@ const FormInformation = () => {
 
   return (
     <Fragment>
+      <ToastMessage
+        show={showToast}
+        onClose={() => setShowToast(false)}
+        message={error}
+      />
       <Col lg={5}>
         <SelectTitle number="05" title="Fill your informations" />
       </Col>
@@ -112,6 +164,11 @@ const FormInformation = () => {
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, name: true })
                   }
+                  onBlur={(e) => 
+                    setForm((s) => ({
+                    ...s,
+                    fullname: e.target.value
+                  }))}
                 />
                 {!formInputValid.name && <p>Please enter a valid name!</p>}
               </Form.Group>
@@ -126,6 +183,11 @@ const FormInformation = () => {
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, phone: true })
                   }
+                  onBlur={(e) => 
+                    setForm((s) => ({
+                    ...s,
+                    phone: e.target.value
+                  }))}
                 />
                 {!formInputValid.phone && (
                   <p>Please enter a valid Phone Number!</p>
@@ -141,6 +203,11 @@ const FormInformation = () => {
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, email: true })
                   }
+                  onBlur={(e) => 
+                    setForm((s) => ({
+                    ...s,
+                    email: e.target.value
+                  }))}
                 />
                 {!formInputValid.email && <p>Please enter a valid Email!</p>}
               </Form.Group>
@@ -148,27 +215,35 @@ const FormInformation = () => {
             <Col lg={6}>
               <Form.Group className="mb-3">
                 <Form.Label>Country</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
+                <Form.Control
+                  type="text"
                   ref={countryInputRef}
-                >
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
+                  onChange={() =>
+                    setFormInputValid({ ...formInputValid, country: true })
+                  }
+                  onBlur={(e) => 
+                    setForm((s) => ({
+                    ...s,
+                    country: e.target.value
+                  }))}
+                /> 
               </Form.Group>
             </Col>
             <Col lg={6}>
               <Form.Group className="mb-3">
                 <Form.Label>City</Form.Label>
-                <Form.Select
-                  aria-label="Default select example"
+                <Form.Control
+                  type="text"
                   ref={cityInputRef}
-                >
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
+                  onChange={() =>
+                    setFormInputValid({ ...formInputValid, city: true })
+                  }
+                  onBlur={(e) => 
+                    setForm((s) => ({
+                    ...s,
+                    city: e.target.value
+                  }))}
+                />
               </Form.Group>
             </Col>
             <Col lg={12}>
@@ -181,6 +256,11 @@ const FormInformation = () => {
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, address: true })
                   }
+                  onBlur={(e) => 
+                    setForm((s) => ({
+                    ...s,
+                    address: e.target.value
+                  }))}
                 />
                 {!formInputValid.address && (
                   <p>Please enter a valid Address!</p>
@@ -195,7 +275,7 @@ const FormInformation = () => {
         prev={"/card-message"}
         type={"submit"}
         nextTitle={"Finish"}
-        totalAmount={totalAmount}
+        totalAmount={cart.totalAmount}
       />
     </Fragment>
   );

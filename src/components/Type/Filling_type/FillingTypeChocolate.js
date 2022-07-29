@@ -1,19 +1,19 @@
 import "swiper/css";
 import "swiper/css/navigation";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { images } from "../../../assets/images";
 import { UilArrowRight } from "@iconscout/react-unicons";
 import { UilArrowLeft } from "@iconscout/react-unicons";
 import SwiperButtonNext from "../../Swiper/SwiperButtonNext";
 import SwiperButtonPrev from "../../Swiper/SwiperButtonPrev";
-import data from "../../data.json";
+// import data from "../../data.json";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Action } from "../../../store/store";
 
-const FillingTypeCohcolate = ({ type_id, onSelect }) => {
-  const filling_type_Chocolate = data.filling_type;
+const FillingTypeCohcolate = ({ type_id, onSelect,fillingType }) => {
+  // const filling_type_Chocolate = data.filling_type;
   const ref = useRef();
 
   const { cart } = useSelector((state) => state);
@@ -61,7 +61,7 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
           },
         }}
       >
-        {filling_type_Chocolate.map((filling, index) => (
+        {fillingType.map((filling, index) => (
           <SwiperSlide key={`filling-type-${index}`}>
             <div
               onClick={() => {
@@ -69,10 +69,10 @@ const FillingTypeCohcolate = ({ type_id, onSelect }) => {
                 addNewFillingType(filling);
               }}
               className={`filling-type 
-              ${cart.chocolate_type.filter(
+              ${cart.types.filter(
                 (e) =>
-                  e.filling_type.id === filling.id &&
-                  e.filling_type.type_id === type_id
+                  e.filling_id.id === filling.id &&
+                  e.filling_id.type_id === type_id
               ).length
                   ? "active"
                   : ""

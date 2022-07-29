@@ -7,14 +7,14 @@ import Steps from "../components/Layout/Steps";
 import ToastMessage from "../components/Layout/ToastMessage";
 import Box from "../components/Type/Box";
 
-const ChooseYourBox = () => {
+const ChooseYourBox = (props) => {
   const [showToast, setShowToast] = useState(false);
-  const { cart, totalAmount } = useSelector((state) => state);
+  const { cart } = useSelector((state) => state);
 
   let navigate = useNavigate();
 
   const nextStep = () => {
-    if (cart.id === undefined || cart.id === -1) {
+    if (cart.box_id === undefined || cart.box_id === -1) {
       setShowToast(true);
     } else {
       navigate("/choose-chocolate");
@@ -32,13 +32,13 @@ const ChooseYourBox = () => {
         <SelectTitle number="01" title="Choose your suitable box" />
       </Col>
       <Col lg={7}>
-        <Box />
+        <Box boxType={props.boxType} />
       </Col>
       <Steps
         onClick={nextStep}
         next={nextStep}
         prev={"/"}
-        totalAmount={totalAmount}
+        totalAmount={cart.totalAmount}
         nextTitle={"Next Step"}
         disabled={"disabled"}
       />

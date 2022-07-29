@@ -18,9 +18,9 @@ const Marge = ({ marge, type_id }) => {
           // className="marge-content"
           className={`marge-content 
               ${
-                cart.chocolate_type.filter(
+                cart.types.filter(
                   (e) =>
-                    e.id === type_id && e.filling_type.merge.id === marge.id
+                    e.chocolate_type_id === type_id && e.merge_id.id === marge.id
                 ).length
                   ? "active"
                   : ""
