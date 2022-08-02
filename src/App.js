@@ -10,8 +10,9 @@ import FormInformation from "./pages/FormInformation";
 import Order from "./pages/Order";
 import Spinner from "react-bootstrap/Spinner";
 import AboutUs from "./pages/AboutUs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useEffect, useState } from "react";
+import { Action } from "./store/store";
 
 function App() {
   const [error, setError] = useState(null);
@@ -23,6 +24,8 @@ function App() {
 
   const { cart } = useSelector((state) => state);
   console.log("cart store =>", cart);
+
+  const dispatch = useDispatch();
   const fetchDataBox = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -36,14 +39,30 @@ function App() {
       const res = await response.json();
 
       const loadedBox = res.data.boxes;
-      const loadeChocolate = res.data.chocolate_types;
-      const loadeFilling = res.data.filling_types;
-      const loadedMerge = loadeFilling.map((merge) => merge.mergs);
+      const loadedChocolate = res.data.chocolate_types;
+      const loadedFilling = res.data.filling_types;
+      const loadedMerge = loadedFilling.map((merge) => merge.mergs);
 
       setBoxType(loadedBox);
-      setChocolateType(loadeChocolate);
-      setFillingType(loadeFilling);
+      setChocolateType(loadedChocolate);
+      setFillingType(loadedFilling);
       setMerge(loadedMerge);
+
+      const type_id = chocolateType.map((e) => e.id);
+      dispatch(Action.setAddedBox(loadedBox[0]));
+      dispatch(Action.setAddedChocolate(loadedChocolate[0]));
+      dispatch(
+        Action.setAddedFilling({
+          filling: loadedFilling[0],
+          type_id: type_id[0],
+        })
+      );
+      dispatch(
+        Action.setAddedMerge({
+          marge: loadedMerge[0][0],
+          type_id: type_id[0],
+        })
+      );
     } catch (error) {
       setError(error.message);
     }
@@ -52,7 +71,105 @@ function App() {
 
   useEffect(() => {
     fetchDataBox();
-  }, [fetchDataBox]);
+  }, []);
+
+  useEffect(() => {
+    if (boxType.length > 0) {
+      const type_id = chocolateType.map((e) => e.id);
+      if (cart.types_count === 1) {
+        dispatch(Action.setAddedBox(boxType[0]));
+        dispatch(Action.setAddedChocolate(chocolateType[0]));
+        dispatch(
+          Action.setAddedFilling({
+            filling: fillingType[0],
+            type_id: type_id[0],
+          })
+        );
+        dispatch(
+          Action.setAddedMerge({
+            marge: merge[0][0],
+            type_id: type_id[0],
+          })
+        );
+      } else if (cart.types_count === 2) {
+        dispatch(Action.setAddedChocolate(chocolateType[0]));
+        dispatch(Action.setAddedChocolate(chocolateType[1]));
+        dispatch(
+          Action.setAddedFilling({
+            filling: fillingType[0],
+            type_id: type_id[0],
+          })
+        );
+
+        dispatch(
+          Action.setAddedFilling({
+            filling: fillingType[0],
+            type_id: type_id[1],
+          })
+        );
+        dispatch(
+          Action.setAddedMerge({
+            marge: merge[0][0],
+            type_id: type_id[0],
+          })
+        );
+        dispatch(
+          Action.setAddedMerge({
+            marge: merge[0][0],
+            type_id: type_id[1],
+          })
+        );
+      } else if (cart.types_count === 3) {
+        dispatch(Action.setAddedChocolate(chocolateType[0]));
+        dispatch(Action.setAddedChocolate(chocolateType[1]));
+        dispatch(Action.setAddedChocolate(chocolateType[2]));
+        dispatch(
+          Action.setAddedFilling({
+            filling: fillingType[0],
+            type_id: type_id[0],
+          })
+        );
+        dispatch(
+          Action.setAddedFilling({
+            filling: fillingType[0],
+            type_id: type_id[1],
+          })
+        );
+        dispatch(
+          Action.setAddedFilling({
+            filling: fillingType[0],
+            type_id: type_id[2],
+          })
+        );
+        dispatch(
+          Action.setAddedMerge({
+            marge: merge[0][0],
+            type_id: type_id[0],
+          })
+        );
+        dispatch(
+          Action.setAddedMerge({
+            marge: merge[0][0],
+            type_id: type_id[1],
+          })
+        );
+        dispatch(
+          Action.setAddedMerge({
+            marge: merge[0][0],
+            type_id: type_id[2],
+          })
+        );
+      } else {
+      }
+    }
+  }, [
+    cart.types_count,
+    boxType,
+    chocolateType,
+    fillingType,
+    merge,
+    
+  ]);
 
   let content = <div></div>;
 
@@ -77,9 +194,6 @@ function App() {
     cart?.chocolate_type?.find((e) => e.filling_type.merge.id === -1);
   const AuthForm = AuthChocolate || AuthFilling || AuthCard;
   // const AuthInformation = AuthChocolate || AuthFilling || formInformation?.name === undefined;
-  // useEffect(() => {
-  //   getDataRequest();
-  // }, [getDataRequest()])
   return (
     <BrowserRouter>
       {content}
@@ -90,12 +204,17 @@ function App() {
             <Route
               path="/"
               index
-              element={<ChooseYourBox boxType={boxType} />}
+              element={
+                <ChooseYourBox
+                  boxType={boxType}
+                  chocolateType={chocolateType}
+                />
+              }
             />
             {!AuthChocolate && (
               <Route
                 path="choose-chocolate"
-                element={<ChooseChocolate chocolateType={chocolateType} />}
+                element={<ChooseChocolate chocolateType={chocolateType} fillingType={fillingType} merge={merge} />}
               />
             )}
             {!AuthFilling && (

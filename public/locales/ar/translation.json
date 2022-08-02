@@ -1,0 +1,45 @@
+{
+  "core": {
+    "box_shape": "نوع الصندوق",
+    "chocolate_shape": "نوع الشوكلاته",
+    "filling_type": "نوع التعبئة",
+    "gift_card": "اهداء كرت",
+    "your_informations": "معلوماتك",
+    "choose_box": "اختر الصندوق المناسب لك",
+    "choose_chocolate": "اختر شكل الشوكولاتة",
+    "choose_filling": "اختر نوع الحشوة",
+    "gift_card_title": "إضافة رسالة بطاقة هدية",
+    "sender_name": "اسم المرسل",
+    "message": "الرسالة",
+    "your_informations_title": "املأ معلوماتك الشخصية",
+    "full_name": "الاسم الكامل",
+    "phone_number": "رقم الهاتف",
+    "email": "البريد الالكتروني",
+    "country": "الدولة",
+    "city": "المدينة",
+    "address": "العنوان",
+    "about_us": "حول",
+    "contact_us": "اتصل بنا",
+    "order_title": "شكرا على طلبك",
+    "order_number": "رقم طلبك هو",
+    
+
+
+
+    "next_step": "التالي",
+    "prev_step": "السابق",
+    "finish": "انهاء",
+
+    "total_amount": "المبلغ الإجمالي"
+  },
+  "error": {
+    "error_chocolate": "الرجاء اختيار العدد الصحيح من الشوكولاتة",
+    "error_filling": "الرجاء اختر نوع حشوة الشوكلانه والدمج",
+    "valid_name": "رجاء ادخل اسما صحيحا!",
+    "valid_phone": "يرجى إدخال رقم هاتف صالح!",
+    "valid_email": "يرجى إدخال البريد الإلكتروني الصحيح!",
+    "valid_address": "يرجى إدخال عنوان صالح!",
+    "": ""
+
+  }
+}

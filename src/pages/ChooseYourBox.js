@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { Col } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SelectTitle from "../components/Layout/SelectTitle";
@@ -10,6 +11,8 @@ import Box from "../components/Type/Box";
 const ChooseYourBox = (props) => {
   const [showToast, setShowToast] = useState(false);
   const { cart } = useSelector((state) => state);
+
+  const { t } = useTranslation();
 
   let navigate = useNavigate();
 
@@ -29,17 +32,18 @@ const ChooseYourBox = (props) => {
         message={"please check your box"}
       />
       <Col lg={5}>
-        <SelectTitle number="01" title="Choose your suitable box" />
+        <SelectTitle number="01" title={t("core.choose_box")} />
       </Col>
       <Col lg={7}>
-        <Box boxType={props.boxType} />
+        <Box boxType={props.boxType} chocolateType={props.chocolateType} />
       </Col>
       <Steps
         onClick={nextStep}
         next={nextStep}
         prev={"/"}
         totalAmount={cart.totalAmount}
-        nextTitle={"Next Step"}
+        nextTitle={t("core.next_step")}
+        prevTitle={t("core.prev_step")}
         disabled={"disabled"}
       />
     </Fragment>

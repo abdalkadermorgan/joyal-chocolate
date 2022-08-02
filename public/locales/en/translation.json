@@ -1,0 +1,51 @@
+{
+    "core":{
+         "box_shape": "Box Shape",
+         "chocolate_shape": "Chocolate Shape",
+         "filling_type": "Filling Type",
+         "gift_card": "Gift Card",
+         "your_informations": "Your Informations",
+         "choose_box": "Choose your suitable box",
+         "choose_chocolate": "Choose the chocolate shape",
+         "choose_filling": "Choose the filling type",
+         "gift_card_title": "Add gift card message",
+         "sender_name": "Sender Name",
+         "message": "Message",
+         "your_informations_title": "Fill your informations",
+         "full_name": "Full Name",
+         "phone_number": "Phone Number",
+         "email": "e-Mail Address",
+         "country": "Country",
+         "city": "City",
+         "address": "Address",
+
+
+
+         "next_step": "Next Step",
+         "prev_step": "Prev Step",
+         "finish": "Finish",
+         "total_amount": "Total Amount",
+         "about_us": "About us",
+         "contact_us": "Contact us",
+         "order_title": "Thanks for your order",
+         "order_number": "Your Order Number Is",
+         "": "",
+         "": "",
+         "": "",
+         "": "",
+         "": "",
+         "": "",
+         "": ""
+         
+    },
+    "error": {
+        "error_chocolate": "Please choose the correct number of chocolates",
+        "error_filling": "Please choose the filling type and merge",
+        "valid_name": "Please enter a valid name!",
+        "valid_phone": "Please enter a valid Phone Number!",
+        "valid_email": "Please enter a valid Email!",
+        "valid_address": "Please enter a valid Address!",
+        "": "",
+        "": ""
+    }
+}

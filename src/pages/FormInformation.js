@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SelectTitle from "../components/Layout/SelectTitle";
@@ -14,7 +15,8 @@ const FormInformation = () => {
   const [showToast, setShowToast] = useState(false);
   const [form, setForm] = useState({});
   const [error, setError] = useState("");
-  console.log("form =>", form);
+  const { t } = useTranslation();
+
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
 
@@ -48,7 +50,7 @@ const FormInformation = () => {
         "Content-Type": "application/json",
       },
     });
-    
+
     console.log("respon =>>", response);
     const res = await response.json();
 
@@ -68,7 +70,6 @@ const FormInformation = () => {
     // setForm((e) => ({
     //   fullname: '', phone: '', email: '', country: '', city: '', address: ''
     // }));
-  
   }
 
   const [formInputValid, setFormInputValid] = useState({
@@ -128,7 +129,7 @@ const FormInformation = () => {
       // dispatch(
       //   Action.setAddForm(fullname, phone, email, country, city, address)
       // );
-        addFormHandler(cart);
+      addFormHandler(cart);
     }
   };
 
@@ -150,32 +151,33 @@ const FormInformation = () => {
         message={error}
       />
       <Col lg={5}>
-        <SelectTitle number="05" title="Fill your informations" />
+        <SelectTitle number="05" title={t("core.your_informations_title")} />
       </Col>
       <Col lg={7}>
         <div className="form-information">
           <Row>
             <Col lg={12}>
               <Form.Group className={nameControlClasses}>
-                <Form.Label>Full Name</Form.Label>
+                <Form.Label>{t("core.full_name")}</Form.Label>
                 <Form.Control
                   type="text"
                   ref={nameInputRef}
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, name: true })
                   }
-                  onBlur={(e) => 
+                  onBlur={(e) =>
                     setForm((s) => ({
-                    ...s,
-                    fullname: e.target.value
-                  }))}
+                      ...s,
+                      fullname: e.target.value,
+                    }))
+                  }
                 />
-                {!formInputValid.name && <p>Please enter a valid name!</p>}
+                {!formInputValid.name && <p>{t("error.valid_name")} </p>}
               </Form.Group>
             </Col>
             <Col lg={6}>
               <Form.Group className={phoneControlClasses}>
-                <Form.Label>Phone Number</Form.Label>
+                <Form.Label>{t("core.phone_number")}</Form.Label>
                 <Form.Control
                   type="number"
                   pattern="[0-9]*"
@@ -183,72 +185,74 @@ const FormInformation = () => {
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, phone: true })
                   }
-                  onBlur={(e) => 
+                  onBlur={(e) =>
                     setForm((s) => ({
-                    ...s,
-                    phone: e.target.value
-                  }))}
+                      ...s,
+                      phone: e.target.value,
+                    }))
+                  }
                 />
-                {!formInputValid.phone && (
-                  <p>Please enter a valid Phone Number!</p>
-                )}
+                {!formInputValid.phone && <p>{t("error.valid_phone")}</p>}
               </Form.Group>
             </Col>
             <Col lg={6}>
               <Form.Group className={emailControlClasses}>
-                <Form.Label>e-Mail Address</Form.Label>
+                <Form.Label>{t("core.email")}</Form.Label>
                 <Form.Control
                   type="email"
                   ref={emailInputRef}
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, email: true })
                   }
-                  onBlur={(e) => 
+                  onBlur={(e) =>
                     setForm((s) => ({
-                    ...s,
-                    email: e.target.value
-                  }))}
+                      ...s,
+                      email: e.target.value,
+                    }))
+                  }
                 />
-                {!formInputValid.email && <p>Please enter a valid Email!</p>}
+                {!formInputValid.email && <p>{t("error.valid_email")}</p>}
               </Form.Group>
             </Col>
             <Col lg={6}>
               <Form.Group className="mb-3">
-                <Form.Label>Country</Form.Label>
+                <Form.Label>{t("core.country")}</Form.Label>
                 <Form.Control
                   type="text"
                   ref={countryInputRef}
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, country: true })
                   }
-                  onBlur={(e) => 
+                  onBlur={(e) =>
                     setForm((s) => ({
-                    ...s,
-                    country: e.target.value
-                  }))}
-                /> 
+                      ...s,
+                      country: e.target.value,
+                    }))
+                  }
+                />
               </Form.Group>
             </Col>
             <Col lg={6}>
               <Form.Group className="mb-3">
-                <Form.Label>City</Form.Label>
+                <Form.Label>{t("core.city")}</Form.Label>
                 <Form.Control
                   type="text"
                   ref={cityInputRef}
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, city: true })
                   }
-                  onBlur={(e) => 
+                  onBlur={(e) =>
                     setForm((s) => ({
-                    ...s,
-                    city: e.target.value
-                  }))}
+                      ...s,
+                      city: e.target.value,
+                    }))
+                  }
                 />
               </Form.Group>
             </Col>
             <Col lg={12}>
               <Form.Group className={addressControlClasses}>
-                <Form.Label>Address</Form.Label>
+                <Form.Label>{t("core.address")}</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -256,15 +260,14 @@ const FormInformation = () => {
                   onChange={() =>
                     setFormInputValid({ ...formInputValid, address: true })
                   }
-                  onBlur={(e) => 
+                  onBlur={(e) =>
                     setForm((s) => ({
-                    ...s,
-                    address: e.target.value
-                  }))}
+                      ...s,
+                      address: e.target.value,
+                    }))
+                  }
                 />
-                {!formInputValid.address && (
-                  <p>Please enter a valid Address!</p>
-                )}
+                {!formInputValid.address && <p>{t("error.valid_address")}</p>}
               </Form.Group>
             </Col>
           </Row>
@@ -274,7 +277,8 @@ const FormInformation = () => {
         onClick={(event) => handleSubmit(event)}
         prev={"/card-message"}
         type={"submit"}
-        nextTitle={"Finish"}
+        nextTitle={t("core.finish")}
+        prevTitle={t("core.prev_step")}
         totalAmount={cart.totalAmount}
       />
     </Fragment>

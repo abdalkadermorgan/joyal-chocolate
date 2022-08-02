@@ -8,8 +8,11 @@ import { UilTwitter } from "@iconscout/react-unicons";
 import { UilWhatsapp } from "@iconscout/react-unicons";
 import { UilInstagram } from "@iconscout/react-unicons";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     document.body.classList.add("about-page");
     return () => {
@@ -20,7 +23,7 @@ const AboutUs = () => {
     <div className="about-us">
       <Row>
         <Col lg={6} className="about-us-padding">
-          <h2>About us</h2>
+          <h2>{t("core.about_us")}</h2>
           <p>
             t is a long established fact that a reader will be distracted by the
             readable content of a page when looking at its layout. The point of
@@ -38,7 +41,7 @@ const AboutUs = () => {
           </div>
         </Col>
         <Col lg={6} className="border-section-about">
-          <h2>Contact us</h2>
+          <h2>{t("core.contact_us")}</h2>
           <ul className="contact-us">
             <li>
               <UilPhoneAlt />

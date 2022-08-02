@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Action } from "../../store/store";
 import Form from "react-bootstrap/Form";
+import { useEffect } from "react";
 
-const Box = ({boxType}) => {
+const Box = ({ boxType, chocolateType }) => {
   const { cart } = useSelector((state) => state);
-
   const dispatch = useDispatch();
+
   const addNewBox = (data) => {
     dispatch(Action.setAddedBox(data));
+
   };
 
   return (

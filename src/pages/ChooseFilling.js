@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { Col } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import SelectTitle from "../components/Layout/SelectTitle";
@@ -10,6 +11,7 @@ import FillingType from "../components/Type/FillingType";
 const ChooseFilling = (props) => {
   const [showToast, setShowToast] = useState(false);
   const { cart } = useSelector((state) => state);
+  const { t } = useTranslation();
 
   let navigate = useNavigate();
   const nextStep = () => {
@@ -29,10 +31,10 @@ const ChooseFilling = (props) => {
       <ToastMessage
         show={showToast}
         onClose={() => setShowToast(false)}
-        message={"Please choose the filling type and merge"}
+        message={t("error.error_filling")}
       />
       <Col lg={5}>
-        <SelectTitle number="03" title="Choose the filling type" />
+        <SelectTitle number="03" title={t("core.choose_filling")} />
       </Col>
       <Col lg={7}>
         <FillingType fillingType={props.fillingType} merge={props.merge} />
@@ -41,7 +43,8 @@ const ChooseFilling = (props) => {
         onClick={nextStep}
         prev={"/choose-chocolate"}
         totalAmount={cart.totalAmount}
-        nextTitle={"Next Step"}
+        nextTitle={t("core.next_step")}
+        prevTitle={t("core.prev_step")}
       />
     </Fragment>
   );

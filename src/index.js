@@ -1,25 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import {reducer} from './store/store';
-import App from './App';
-import { PersistGate } from 'redux-persist/integration/react';
+import React, { Suspense } from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import { reducer } from "./store/store";
+import App from "./App";
+import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import Spinner from "react-bootstrap/Spinner";
+import "./i18n";
 
 const store = configureStore({
   reducer: reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false,
-  }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 const persistor = persistStore(store);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <PersistGate  persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
+  <Suspense fallback={(<div className="loading">
+  <Spinner animation="grow" variant="primary" />
+</div>)}>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
+  </Suspense>
 );

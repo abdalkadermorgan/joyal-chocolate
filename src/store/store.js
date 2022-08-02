@@ -42,7 +42,7 @@ export const reducer = persistReducer(
         const dataChocolateType = action.payload.data;
         const TypeBox = state.cart.types_count;
         const existingItem = state.cart.types.find(
-          (item) => item.id === dataChocolateType.id
+          (item) => item.chocolate_type_id === dataChocolateType.id
         );
         if (!existingItem) {
           state.cart = {
@@ -69,7 +69,7 @@ export const reducer = persistReducer(
           };
         } else {
           const newChocolateType = state.cart.types.filter(
-            (e) => e.id !== dataChocolateType.id
+            (e) => e.chocolate_type_id !== dataChocolateType.id
           );
           state.cart = {
             ...state.cart,
