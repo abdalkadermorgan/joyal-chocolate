@@ -190,3 +190,25 @@
     }
   }
 }
+
+@media(max-width: 768px) {
+  [dir = "rtl"] {
+    .point-steps {
+
+      ol li {
+        width: auto;
+        margin: 0 8px;
+        text-align: center;
+        font-size: 0.9rem;
+        &::before {
+          display: block;
+          float: none;
+          right: auto;
+          left: auto;
+          margin: auto;
+          margin-bottom: 3px;
+        }
+      }
+    }
+  }
+}

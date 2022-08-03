@@ -2,7 +2,7 @@ import { Row } from "react-bootstrap";
 import "./assets/css/app.css";
 import Sidebar from "./components/Layout/Sidebar";
 import ChooseYourBox from "./pages/ChooseYourBox";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import ChooseChocolate from "./pages/ChooseChocolate";
 import ChooseFilling from "./pages/ChooseFilling";
 import GiftCardMessage from "./pages/GiftCardMessage";
@@ -24,6 +24,8 @@ function App() {
 
   const { cart } = useSelector((state) => state);
   console.log("cart store =>", cart);
+
+  let navigate = useNavigate();
 
   const dispatch = useDispatch();
   const fetchDataBox = useCallback(async () => {
@@ -63,6 +65,8 @@ function App() {
           type_id: type_id[0],
         })
       );
+      navigate("/");
+
     } catch (error) {
       setError(error.message);
     }
@@ -195,7 +199,7 @@ function App() {
   const AuthForm = AuthChocolate || AuthFilling || AuthCard;
   // const AuthInformation = AuthChocolate || AuthFilling || formInformation?.name === undefined;
   return (
-    <BrowserRouter>
+    <>
       {content}
       <Sidebar />
       <div id="main-content">
@@ -237,7 +241,7 @@ function App() {
           </Routes>
         </Row>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 

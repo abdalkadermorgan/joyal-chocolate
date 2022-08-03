@@ -201,6 +201,7 @@
   }
 }
 
+
 [dir="rtl"] {
   .box-type {
     padding-left: 0;
@@ -211,6 +212,15 @@
   .box-type .select-box .content .box-img {
     margin-right: 0;
     margin-left: 10px;
+  }
+}
+
+@media(max-width: 992px) {
+  [dir="rtl"] {
+    .box-type {
+      padding-right: 0;
+      border-right: none;
+    }
   }
 }
 
@@ -755,5 +765,27 @@
 [dir = "rtl"] {
   .form-select {
     background-position: left 0.75rem center;
+  }
+  .dropdown-toggle::after {
+    margin-left: 0;
+    margin-right: 0.255em;
+  }
+}
+
+@media(max-width: 768px) {
+  .menu {
+    display: flex;
+    align-items: center;
+    .lang {
+      margin-right: 20px;
+    }
+  }
+}
+.lang {
+  button {
+    border: none;
+    color: $primary;
+    font-size: 1.3rem;
+    margin: auto;
   }
 }

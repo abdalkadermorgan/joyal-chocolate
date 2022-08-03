@@ -20,7 +20,7 @@ export const reducer = persistReducer(
   {
     storage,
     key: "root",
-    debug: true,
+    debug: false,
     whitelist: ["cart"],
   },
   (state = initialState, action) => {

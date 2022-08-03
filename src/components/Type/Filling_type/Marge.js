@@ -4,7 +4,7 @@ import { Action } from "../../../store/store";
 const Marge = ({ marge, type_id }) => {
   const { cart } = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log("mm",marge);
+  // console.log("mm",marge);
   const addNewMergeType = (marge) => {
     dispatch(Action.setAddedMerge({ marge, type_id }));
   };

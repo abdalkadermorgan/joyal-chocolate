@@ -2,22 +2,19 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { images } from "../../../assets/images";
 import Marge from "./Marge";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FillingTypeCohcolate from "./FillingTypeChocolate";
 import { useSelector } from "react-redux";
 
 const ChocolateType = ({ type, fillingType, merge }) => {
   const { cart } = useSelector((state) => state);
   const [state, setState] = useState({});
-  const m = cart.types.map(e => e.filling_id.id);
-  for (const value of m) {
-    console.log(value);
-    const ss = fillingType.map(e => e.id === value);
-    // console.log("fillingType",fillingType.find(e => e.id === value));
-  }
-  // console.log("1212121", {m});
-  // console.log("ccccc",cart.types.map(e => e.filling_id.id));
-  // console.log("states",cart.types.map(e => e.filling_id.id));
+
+  const filling_cart_id = cart.types.find((e) => e.chocolate_type_id === type.chocolate_type_id );
+  
+  const mergsgData = fillingType.find((e) => e.id === filling_cart_id.filling_id.id);
+
+  
   return (
     <div className="select-filling">
       <div className="chocolate-content">
@@ -30,12 +27,12 @@ const ChocolateType = ({ type, fillingType, merge }) => {
         <FillingTypeCohcolate
           onSelect={(fillingType) => setState(fillingType)}
           type_id={type.chocolate_type_id}
-          fillingType= {fillingType}
+          fillingType={fillingType}
         />
       </div>
       {/* <Marge marge={merge[cart.types.map(e => e.filling_id.id) -1 ]} type_id={type.chocolate_type_id} /> */}
-      <Marge 
-      // marge={value}
+      <Marge
+       marge={mergsgData?.mergs}
        type_id={type.chocolate_type_id} />
     </div>
   );

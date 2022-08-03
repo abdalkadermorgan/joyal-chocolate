@@ -30,6 +30,14 @@
     margin-right: 150px;
   }
 }
+@media(max-width: 768px) {
+  [dir="rtl"] {
+    #main-content {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
 .about-page {
   #main-content {
     height: auto;
