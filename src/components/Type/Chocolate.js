@@ -51,7 +51,7 @@ const Chocolate = ({ chocolateType, fillingType, merge }) => {
         <label
           htmlFor={`chocalate-${index}`}
           className={`select-box ${
-            cart.types.filter((e) => e.id === data.id).length ? "active" : ""
+            cart.types.filter((e) => e.chocolate_type_id === data.id).length ? "active" : ""
           }`}
           key={`box-type-${index}`}
           onClick={asd}

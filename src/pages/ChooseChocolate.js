@@ -28,28 +28,6 @@ const ChooseChocolate = (props) => {
     }
   };
 
-  // useEffect(() => {
-  //   const type_id = props.chocolateType.map((e) => e.id);
-
-  //   if (cart.types_count === 1) {
-  //     // dispatch(Action.setAddedChocolate(chocolateType[0]));
-  //     setTimeout(() => {
-  //       dispatch(
-  //         Action.setAddedFilling({
-  //           filling: props.fillingType[0],
-  //           type_id: type_id[0],
-  //         })
-  //       );
-  //       console.log("ttt");
-  //     }, 1000)
-  //     // dispatch(
-  //     //   Action.setAddedMerge({
-  //     //     marge: merge[0][0],
-  //     //     type_id: type_id[0],
-  //     //   })
-  //     // );
-  //   }
-  // }, [cart.types.length])
 
   return (
     <Fragment>

@@ -9,7 +9,6 @@ import ToastMessage from "../components/Layout/ToastMessage";
 import { Action } from "../store/store";
 
 const isEmpty = (value) => value.trim() === "";
-// const isEmail = (value) => value.includes("@");
 
 const FormInformation = () => {
   const [showToast, setShowToast] = useState(false);
@@ -51,25 +50,18 @@ const FormInformation = () => {
       },
     });
 
-    console.log("respon =>>", response);
     const res = await response.json();
 
-    console.log("newCart", newCart);
     if (res.status === true) {
       const orderNumber = res.data;
       setTimeout(() => {
         dispatch(Action.setOrderNumber(orderNumber));
         navigate("/order-number");
       }, 200);
-      console.log("resIf => ", res);
     } else {
       setShowToast(true);
       setError(res.msg);
     }
-    console.log("newCart", newCart);
-    // setForm((e) => ({
-    //   fullname: '', phone: '', email: '', country: '', city: '', address: ''
-    // }));
   }
 
   const [formInputValid, setFormInputValid] = useState({

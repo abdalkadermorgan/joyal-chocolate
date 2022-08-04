@@ -23,7 +23,6 @@ function App() {
   const [merge, setMerge] = useState([]);
 
   const { cart } = useSelector((state) => state);
-  console.log("cart store =>", cart);
 
   let navigate = useNavigate();
 
